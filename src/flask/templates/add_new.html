@@ -1,0 +1,23 @@
+<h2>Lisää uusi kirja (book)</h2>
+<br>
+<form action="/add_new" method="POST" enctype="multipart/form-data">
+    Nimike (title): <br>
+    <textarea placeholder="Min. 5 merkkiä" name="title" rows="1" cols="50" required maxlength="50" ></textarea>
+    <p>
+    Kirjoittajat (author): <br>
+    <textarea placeholder="Lisää uusi kirjoittaja uudelle riville" name="author" rows="5" cols="50" required maxlength="250"></textarea>
+    <p>
+    Isbn: <br>
+    <textarea placeholder="Min. 5 merkkiä" name="isbn" rows="1" cols="50" required maxlength="50" ></textarea>
+    <p>
+    Vuosi (year): <br>
+    <input type="number" name="year" min="1900" max="2030" required/>
+    <p>
+    Julkaisija (publisher)<br>
+    <textarea placeholder="Min. 5 merkkiä" name="publisher" rows="1" cols="50" required maxlength="50" ></textarea>
+    <p>
+    Avainsanat (keywords): <br>
+    <textarea placeholder="Lisää uusi avainsana uudelle riville" name="keywords" rows="5" cols="50" required maxlength="250" ></textarea>
+    <p>
+    <p>
+    <input type="submit" value="LISÄÄ">
