@@ -1,9 +1,17 @@
-from os import getenv
 from flask import Flask
-
-app = Flask(__name__)
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import text
 import routes
 
-app.secret_key = getenv("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://"
+#app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
+#app.secret_key = getenv("SECRET_KEY")
+db = SQLAlchemy(app)
+
+@app.route("/")
+def index():
+    return "Heipparallaa!"
+
 
