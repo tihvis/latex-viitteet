@@ -14,7 +14,9 @@ CREATE TABLE authors (
 );
 CREATE TABLE authors_citations (
 	author_id TEXT REFERENCES authors (author_id), 
-	citation_id REFERENCES citations (citation_id),
+	citation_id REFERENCES citations (citation_id)
+
+)
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	name TEXT NOT NULL UNIQUE,
