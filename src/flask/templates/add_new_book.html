@@ -1,6 +1,10 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
 <h2>Lisää uusi kirja (book)</h2>
 <br>
-<form action="/add_new" method="POST" enctype="multipart/form-data">
+<form action="/add_new_book" method="POST" enctype="multipart/form-data">
     Nimike (title): <br>
     <textarea placeholder="Min. 5 merkkiä" name="title" rows="1" cols="50" required maxlength="50" ></textarea>
     <p>
@@ -21,3 +25,5 @@
     <p>
     <p>
     <input type="submit" value="LISÄÄ">
+    <p>
+{% endblock %}

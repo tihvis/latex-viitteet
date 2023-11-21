@@ -8,13 +8,13 @@ def index():
         
 
 
-@app.route("/add_new", methods=["GET", "POST"])
-def add_new():
+@app.route("/add_new_book", methods=["GET", "POST"])
+def add_new_book():
     if request.method == "GET":
-        return render_template("add_new.html")
+        return render_template("add_new_book.html")
     else:
-        #riku/ville?
-        #type_ = 
+        #riku/ville? olisi näppärää, jos tämä tulisi sisäänkirjautumistietoilla?
+        type_ = "book"
         title = request.form["title"]
         author_list = request.form["author"]
         isbn = request.form["isbn"]
