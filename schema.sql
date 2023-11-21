@@ -1,33 +1,36 @@
 CREATE TABLE citations (
 	id SERIAL PRIMARY KEY,
-	type TEXT,
-	title TEXT,
-	year INTEGER
-);
-
-CREATE TABLE articles (
-	id INTEGER,
-	journal TEXT,
-	volume TEXT, /* these are strings in bibtex */
-	number TEXT,
-	pages TEXT,
-	FOREIGN KEY (id) REFERENCES citations(id)
-);
-
-CREATE TABLE books (
-	id INTEGER,
-	publisher TEXT,
+	entry_type TEXT,
+	/* bibtex fields */
 	address TEXT,
-	FOREIGN KEY (id) REFERENCES citations(id)	
-);
-
-CREATE TABLE inproceedings (
-	id INTEGER,
+	annote TEXT,
+	author TEXT, /* for completeness, not used */
 	booktitle TEXT,
-	series TEXT,
+	chapter TEXT,
+	crossref TEXT,
+	edition TEXT,
+	editor TEXT,
+	howpublished TEXT,
+	institution TEXT,
+	journal TEXT,
+	key TEXT,
+	month TEXT,
+	note TEXT,
+	number TEXT,
+	organization TEXT,
 	pages TEXT,
 	publisher TEXT,
-	FOREIGN KEY (id) REFERENCES citations(id)	
+	school TEXT,
+	series TEXT,
+	title TEXT,
+	type TEXT,
+	volume TEXT,
+	year TEXT,
+	/* commonly used non-standard fields */
+	doi TEXT,
+	isbn TEXT,
+	/* keywords TEXT, how do we implement this? */
+	url TEXT
 );
 
 CREATE TABLE authors (
