@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, redirect, request, make_response, flash
-
+from entries import add_book
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -23,6 +23,7 @@ def add_new():
         keywords_list = request.form["keywords"]
 
         # tietokantaoperaatiot?
+        add_book(author_list, title,publisher,year,isbn)
         #flash("Lisäys onnistui! tms")
         return redirect("/")
 
