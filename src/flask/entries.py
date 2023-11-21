@@ -13,8 +13,11 @@ def add_book(authors, title, publisher, year, isbn):
 
 
 def _add_author(name):
-    sql = text("INSERT INTO authors (name) VALUES (:name) ON CONFLICT DO NOTHING RETURNING ID")
-    result = app.db.session.execute(sql, {"name": name}).fetchone()[0]
+    sql = text("INSERT INTO authors (name) VALUES (:name) ON CONFLICT DO NOTHING")
+    app.db.session.execute(sql, {"name": name})
+    app.db.session.commit()
+    sql = text("SELECT id FROM authors WHERE name = :name")
+    result = app.db.session.execute(sql, {"name":name}).fetchone()[0]
     return result
     
     

@@ -35,7 +35,7 @@ CREATE TABLE citations (
 
 CREATE TABLE authors (
 	id SERIAL PRIMARY KEY,
-	name TEXT
+	name TEXT UNIQUE
 );
 
 CREATE TABLE authors_citations (
