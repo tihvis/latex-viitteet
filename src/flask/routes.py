@@ -24,11 +24,17 @@ def add_new_book():
         keywords_list = request.form["keywords"]
         if len(title) < 5:
             flash("Kirjan nimi on liian lyhyt")
-            return redirect("/add_new_book")
+            return render_template("/add_new_book.html")
+        if len(title) > 50:
+            flash("Kirjan nimi on liian pitkä")
+            return render_template("/add_new_book.html")
         # tietokantaoperaatiot?
-        add_book(author_list, title,publisher,year,isbn)
-        flash("Lisäys onnistui!")
-        return redirect("/")
+        if not add_book(author_list, title,publisher,year,isbn):
+            flash("Lisäys epäonnistui!")
+            return render_template("add_new_book.html")
+        else:
+            flash("Lisäys onnistui!")
+            return redirect("/")
 
 
 
