@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, redirect, request, make_response, flash
+from flask import flash, render_template, redirect, request, make_response
 from entries import add_book
 @app.route("/")
 def index():
@@ -24,7 +24,7 @@ def add_new_book():
 
         # tietokantaoperaatiot?
         add_book(author_list, title,publisher,year,isbn)
-        #flash("Lisäys onnistui! tms")
+        flash("Lisäys onnistui!")
         return redirect("/")
 
 

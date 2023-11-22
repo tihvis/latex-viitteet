@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="fi">
-  <head>
-    <title>latex-viitteet</title>
-  </head>
-
-  <body>
+   <body>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+         {% for message in messages %}
+         <li><i><b>{{ message }}</b></i></li>
+         {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
       <h1>latex-viitteet</h1>
-        <ul>
-          <li><a href="/">Etusivu</a></li>
-          <li><a href="/">Lisää artikkeli</a></li> 
-          <li><a href="/add_new_book">Lisää kirja</a></li>
-          <li><a href="/">Lisää konf. artikkeli </a></li>
-          <li><a href="/">Hae</a></li>
-        </ul>
-
-        {% block content %}{% endblock %}
-    
-  </body>
+      <ul>
+         <li><a href="/">Etusivu</a></li>
+         <li><a href="/">Lisää artikkeli</a></li>
+         <li><a href="/add_new_book">Lisää kirja</a></li>
+         <li><a href="/">Lisää konf. artikkeli </a></li>
+         <li><a href="/">Hae</a></li>
+      </ul>
+      {% block content %}{% endblock %}
+   </body>
 </html>
