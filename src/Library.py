@@ -11,13 +11,14 @@ class Library:
 
 #Tätä alla olevaa ei ole testattu, koska tässä branchissa ei 
 #ollut entries.py jostain syystä
-    def add_book(authors, title, publisher, year, isbn):
+    def add_book(self, title, author, isbn, year, publisher, keywords):
         data = {
-            "authors": authors,
             "title": title,
-            "publisher": publisher,
+            "author": author,
+            "isbn": isbn,
             "year": year,
-            "isbn": isbn
+            "publisher": publisher,
+            "keywords": keywords
         }
 
         requests.post(f"{self._base_url}/add_new", data=data)

@@ -5,9 +5,8 @@ Library  ../Library.py
 *** Variables ***
 ${SERVER}  localhost:5000
 ${DELAY}  0.5 seconds
-${ADD_NEW}  add_new
 ${HOME_URL}  http://${SERVER}
-${ADD_NEW_URL}  http://${SERVER}/{ADD_NEW}
+${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
 
 *** Keywords ***
 Open And Configure Browser
@@ -17,20 +16,20 @@ Open And Configure Browser
     Set Selenium Speed  ${DELAY}
 
 Starting Page Should Be Open
-    Title Should Be  latex-viitteet
+    Title Should Be  Latex-viitteet
 
-Add New Page Should Be Open
+Add New Book Page Should Be Open
     Title Should Be  Lisää uusi kirja
 
 Go To Starting Page
     Go To  ${HOME_URL}
 
-Go To Add New Page
-    Go To  ${ADD_NEW_URL}
+Go To Add New Book Page
+    Go To  ${ADD_NEW_BOOK_URL}
 
 Set Authors
-    [Arguments]  ${authors}
-    Input Text  authors  ${authors}
+    [Arguments]  ${author}
+    Input Text  author  ${author}
 
 Set Title
     [Arguments]  ${title}
@@ -47,6 +46,10 @@ Set Year
 Set ISBN
     [Arguments]  ${isbn}
     Input Text  isbn  ${isbn}
+
+Set Keywords
+    [Arguments]  ${keywords}
+    Input Text  keywords  ${keywords}
 
 Submit Citation
     Click Button  Lisää
