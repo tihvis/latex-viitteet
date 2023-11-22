@@ -1,8 +1,12 @@
 {% extends "layout.html" %}
-
-
 {% block content %}
-<h2>Lisää uusi kirja (book)</h2>
+<head>
+    <title>Lisää uusi kirja</title>
+</head>
+<body>
+    
+    <h2>Lisää uusi kirja (book)</h2>
+>>>>>>> 9eb3adb (Change buttons to lower case.):src/flask/templates/add_new.html
 <br>
 <form action="/add_new_book" method="POST" enctype="multipart/form-data">
     Nimike (title): <br>
@@ -24,6 +28,7 @@
     <textarea placeholder="Lisää uusi avainsana uudelle riville" name="keywords" rows="5" cols="50" required maxlength="250" ></textarea>
     <p>
     <p>
-    <input type="submit" value="LISÄÄ">
+    <input type="submit" value="Lisää">
     <p>
 {% endblock %}
+
