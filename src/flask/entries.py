@@ -13,7 +13,7 @@ def add_book(authors, title, publisher, year, isbn):
             _add_author_citation(author_id, citation_id)
         app.db.session.commit()
     except:
-        return false
+        return False
     return True
 
 def _add_author(name):
@@ -29,3 +29,8 @@ def _add_author_citation(author_id,citation_id):
     sql = text("INSERT INTO authors_citations (author_id, citation_id) VALUES (:author_id, :citation_id)")
     app.db.session.execute(sql, {"author_id":author_id, "citation_id":citation_id})
     #app.db.session.commit()
+
+def get_all_citations():
+    sql = text("SELECT * FROM citations")
+    result = app.db.session.execute(sql).fetchall()
+    return result
