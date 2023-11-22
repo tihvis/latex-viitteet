@@ -4,7 +4,7 @@ Library  ../Library.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
-${DELAY}  0.5 seconds
+${DELAY}  0.1 seconds
 ${HOME_URL}  http://${SERVER}
 ${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
 
@@ -19,7 +19,7 @@ Starting Page Should Be Open
     Title Should Be  Latex-viitteet
 
 Add New Book Page Should Be Open
-    Title Should Be  Lisää uusi kirja
+    Title Should Be  Latex-viitteet
 
 Go To Starting Page
     Go To  ${HOME_URL}
