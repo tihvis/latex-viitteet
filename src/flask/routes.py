@@ -1,6 +1,6 @@
 from app import app
 from flask import flash, render_template, redirect, request, make_response
-from entries import add_book
+from entries import add_book, get_all_citations
 
 @app.route("/")
 def index():
@@ -37,8 +37,11 @@ def add_new_book():
             return redirect("/")
 
 
-
-
+@app.route("/list")
+def list():
+    citations = get_all_citations()
+    return render_template("list.html", citations=citations)
+        
 
 
 
