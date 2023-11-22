@@ -9,6 +9,6 @@ Click Add New Book Link
     Click Link  Lisää kirja
     Add New Book Page Should Be Open
 
-Click Front Page Link
-    Click Link  Etusivu
-    Starting Page Should Be Open
+#Click Front Page Link  #linkki toistaiseksi pois käytöstä
+#    Click Link  Etusivu
+#    Starting Page Should Be Open
