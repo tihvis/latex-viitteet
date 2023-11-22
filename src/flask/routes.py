@@ -1,6 +1,6 @@
 from app import app
 from flask import flash, render_template, redirect, request, make_response
-from entries import add_book
+from entries import add_book, get_all_citations
 
 @app.route("/")
 def index():
@@ -24,25 +24,25 @@ def add_new_book():
         keywords_list = request.form["keywords"]
         if len(title) < 5:
             flash("Kirjan nimi on liian lyhyt")
-            return redirect("/add_new_book")
+            return render_template("/add_new_book")
         if len(title) > 40:
             flash("Kirjan nimi on liian pitkä")
-            return redirect("/add_new_book")
+            return render_template("/add_new_book")
         if len(isbn) < 5:
             flash("ISBN-numero on liian lyhyt")
-            return redirect("/add_new_book")
+            return render_template("/add_new_book")
         if len(isbn) > 17:
             flash("ISBN-numero on liian pitkä")
-            return redirect("/add_new_book")
+            return render_template("/add_new_book")
         if year < 0:
             flash("Vuosiluku ei kelpaa")
-            return redirect("/add_new_book")
+            return render_template("/add_new_book")
         if len(publisher) < 5:
             flash("Kustantajan nimi on liian lyhyt")
-            return redirect("/add_new_book")
+            return render_template("/add_new_book")
         if len(publisher) > 40:
             flash("Kustantajan nimi on liian pitkä")
-            return redirect("/add_new_book")
+            return render_template("/add_new_book")
         #for author in author_list: #tää tuntuu toimivan silloinkin kun ei pitäisi o_O
             #name = author.split(" ")
             #if len(name) == 1:
@@ -53,13 +53,19 @@ def add_new_book():
         
 
         # tietokantaoperaatiot?
-        add_book(author_list, title,publisher,year,isbn)
-        flash("Lisäys onnistui!")
-        return redirect("/")
+        if not add_book(author_list, title,publisher,year,isbn):
+            flash("Lisäys epäonnistui!")
+            return render_template("add_new_book.html")
+        else:
+            flash("Lisäys onnistui!")
+            return redirect("/")
 
 
-
-
+@app.route("/list")
+def list():
+    citations = get_all_citations()
+    return render_template("list.html", citations=citations)
+        
 
 
 
