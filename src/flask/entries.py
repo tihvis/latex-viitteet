@@ -34,8 +34,3 @@ def get_all_citations():
     sql = text("SELECT * FROM citations")
     result = app.db.session.execute(sql).fetchall()
     return result
-
-def get_authors_of_book(title):
-    sql = text("SELECT STRING_AGG(authors.name, ', ') FROM authors JOIN authors_citations ON authors.id = authors_citations.author_id JOIN citations ON authors_citations.citation_id = citations.id WHERE citations.title =: title")
-    result = app.db.session.execute(sql, {"citations.title":title}).fetchall()
-    return result
