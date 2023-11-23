@@ -29,4 +29,4 @@ jobs:
       #- name: Run robot tests
       #  run: bash run_robot_tests.sh
       - name: Run pytest
-        run: poetry run --branch -m pytest
+        run: poetry run pytest
