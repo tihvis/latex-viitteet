@@ -1,12 +1,17 @@
 <head>
     <title>Lisäämäsi viitteet</title>
-</head>
-{% extends "layout.html" %}
-{% block content %}
-<h2>Lisäämäsi viitteet</h2>
-{% for citation in citations %}
-<p>{{citation.title}}</p>
-<br>
-{% endfor %}
-{% endblock %}
+ </head>
+ {% extends "layout.html" %}
+ {% block content %}
+ <h2>Lisäämäsi viitteet:</h2>
+ {% for citation in citations %}
+ <ul>
+ <h3><i>{{citation.title}}</i></h3>
+    <p>Vuosi: {{citation.year}}</p>
+    <p>Julkaisija: {{citation.publisher}}</p>
+    <input type="hidden" id="hidden" name="amount" value="{{amount}}">
+ </ul>
+ <br>
+ {% endfor %}
+ {% endblock %}
 

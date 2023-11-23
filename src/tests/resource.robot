@@ -7,6 +7,7 @@ ${SERVER}  localhost:5000
 ${DELAY}  0.01 seconds
 ${HOME_URL}  http://${SERVER}
 ${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
+${CITATIONS_LIST_URL}  http://${SERVER}/list
 
 *** Keywords ***
 Open And Configure Browser
@@ -29,6 +30,9 @@ Go To Starting Page
 
 Go To Add New Book Page
     Go To  ${ADD_NEW_BOOK_URL}
+
+Go To Citation List Page
+    Go To  ${CITATIONS_LIST_URL}
 
 Set Authors
     [Arguments]  ${author}

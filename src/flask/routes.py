@@ -33,10 +33,13 @@ def add_new_book():
             return render_template("error.html", error="Kustantajan nimen tulee olla 2-40 merkkiä pitkä.")
         if len(author_list) == 0:
             return render_template("error.html", error="Viitteeseen tulee lisätä vähintään yksi kirjailija.")
-        for author in author_list:
-            names = author.split()
-            if len(names) < 2:
-                return render_template("error.html", error="Jokaisen kirjailijan nimessä tulee olla vähintään kaksi nimeä.")
+        #Tämä ei toimi, pitäisi saada tarkistamaan onko jokaisessa kirjailijan nimessä vähintään kaksi sanaa.
+        # for author in author_list:
+        #     names = author.split()
+        #     for list in names:
+        #         if len(list) <2:
+        #             return render_template("error.html", error="Jokaisen kirjailijan nimessä tulee olla vähintään kaksi nimeä.")
+
         add_book(title, author_list, isbn, year, publisher)
         flash("Lisäys onnistui!")
         return redirect("/")      
@@ -50,7 +53,8 @@ def add_new_book():
 @app.route("/list")
 def list():
     citations = get_all_citations()
-    return render_template("list.html", citations=citations)
+    amount = len(citations)
+    return render_template("list.html", citations=citations, amount=amount)
         
 
 
