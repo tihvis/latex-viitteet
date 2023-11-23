@@ -26,11 +26,11 @@ class AddBookView(View):
         else:
             #riku/ville? olisi näppärää, jos tämä tulisi sisäänkirjautumistietoilla?
             type = "book"
-            title = request.form["title"]
-            author_list = request.form["author"]
-            isbn = request.form["isbn"]
-            year = request.form["year"]
-            publisher = request.form["publisher"]
+            title = str(request.form["title"])
+            author_list = str(request.form["author"])
+            isbn = str(request.form["isbn"])
+            year = str(request.form["year"])
+            publisher = str(request.form["publisher"])
             #keywords_list = request.form["keywords"]
             msg_tuple = self._validator.validate(author_list, title, year, publisher, isbn)
             if msg_tuple[0] == False:
