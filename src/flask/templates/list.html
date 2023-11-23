@@ -1,7 +1,12 @@
+<head>
+    <title>Lisäämäsi viitteet</title>
+</head>
 {% extends "layout.html" %}
 {% block content %}
+<h2>Lisäämäsi viitteet</h2>
 {% for citation in citations %}
-{{citation.title}}<br>
+<p>{{citation.title}}</p>
+<br>
 {% endfor %}
 {% endblock %}
 

@@ -16,10 +16,13 @@ Open And Configure Browser
     Set Selenium Speed  ${DELAY}
 
 Starting Page Should Be Open
-    Title Should Be  latex-viitteet
+    Title Should Be  Latex-viitteet
 
 Add New Book Page Should Be Open
-    Title Should Be  Lisää uusi kirja 
+    Title Should Be  Lisää uusi kirja
+
+List All Citings Page Should Be Open
+    Title Should Be  Lisäämäsi viitteet 
 
 Go To Starting Page
     Go To  ${HOME_URL}

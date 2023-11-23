@@ -9,6 +9,7 @@ Click Add New Book Link
     Click Link  Lisää kirja
     Add New Book Page Should Be Open
 
-#Click Front Page Link  #linkki toistaiseksi pois käytöstä
-#    Click Link  Etusivu
-#    Starting Page Should Be Open
+Click List All Citations Link
+    Click Link  Hae lisäämäsi viitteet
+    List All Citings Page Should Be Open
+
