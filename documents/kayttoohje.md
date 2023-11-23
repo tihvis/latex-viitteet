@@ -1,12 +1,12 @@
 ## Sovelluksen asennus ja käyttö
 Sovellus on kehitetty ja testattu ubuntu-käyttöjärjelmässä ja Chrome-selaimella. Sovelluksen käyttö vaatii, että koneella on myös asennettuna [PostgreSQL](https://hy-tsoha.github.io/materiaali/osa-2/#tietokannan-k%C3%A4ytt%C3%A4minen). Robot-automaattitestien suorittaminen vaatii lisäksi, että koneella on asennettuna [ChromeDriver](https://chromedriver.chromium.org/).
 
-Kopioi koneellesi kaikki tiedostot hakemistorakenne säilyttäen. Näiden tiedostojen lisäksi tarvitaan projektin päähakemistoon tiedosto, johon talletetaan ympäristömuuttujat. Tiedoston nimeksi tulee antaa .env ja tiedoston sisällön tulee olla seuraava:
+Kopioi koneellesi kaikki tiedostot hakemistorakenne säilyttäen. Tiedostojen joukossa on ympäristömuuttujat sisältävä tiedosto .env. Tiedostoon on tallennettu tietokannan tarvitseman hakemisto-osoitteen lisäksi salasana, jota ilman sovellus ei toimi:
 ```bash
 DATABASE_URL=postgresql:///user
-SECRET_KEY=<itsemuodostettu salasana>
+SECRET_KEY=<testikäytössäoleva salasana>
 ```
-Salasanan saa muodostettua esimerkiksi terminaalin komentorivillä seuraavilla komennoilla: 
+Vaihda omaa käyttöä varten tiedostossa oleva salasana toiseen. Salasanan saa muodostettua esimerkiksi terminaalin komentorivillä seuraavilla komennoilla: 
 ```
 $ python3
 >>> import secrets
