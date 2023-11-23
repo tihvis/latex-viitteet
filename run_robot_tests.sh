@@ -1,4 +1,4 @@
-poetry run python3 src/index.py &
+poetry run python3 src/flaskapp/app.py &
 
 while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:5001/ping)" != "200" ]];
   do sleep 1;
