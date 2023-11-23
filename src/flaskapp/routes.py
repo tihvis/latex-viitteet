@@ -76,6 +76,7 @@ class EntryValidator():
         if len(author_list) == 0:
             return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
         return (True, "")
+        # Väliaikaisesti poistettu
         #for author in author_list:
         #    names = author.split()
             #if len(names) < 2:
