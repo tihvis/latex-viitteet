@@ -56,7 +56,7 @@ cover/
 log.html
 output.xml
 report.html
-
+*.xml
 # Translations
 *.mo
 *.pot
