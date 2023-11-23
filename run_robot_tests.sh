@@ -1,5 +1,6 @@
+
 start-pg.sh &
-cd src/flask
+cd src/flaskapp
 poetry run flask run &
 
 #while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:5000/ping)" != "200" ]];
