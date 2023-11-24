@@ -6,7 +6,7 @@ Kopioi koneellesi kaikki tiedostot hakemistorakenne s채ilytt채en. Luo ymp채rist�
 DATABASE_URL=postgresql:///user
 SECRET_KEY=avain
 ```
-Lis채채 tietokannan osoitteeksi Postgres-tietokantasi nimi. Salaisen avaimen saa muodostettua esimerkiksi terminaalin komentorivill채 seuraavilla komennoilla: 
+Lis채채 tietokannan osoitteeseen "user" tilalle Postgres-tietokantasi nimi. Salaisen avaimen saa muodostettua esimerkiksi terminaalin komentorivill채 seuraavilla komennoilla: 
 ```
 $ python3
 >>> import secrets
