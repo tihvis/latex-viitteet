@@ -49,7 +49,7 @@ class ListView(View):
 
     def dispatch_request(self):
         items = self._db.get_all_citations()
-        return render_template(self._template, citations=items)
+        return render_template(self._template, citations=items, amount=len(items))
 
 class ErrorView(View):
     def __init__(self, error_msg, template):
