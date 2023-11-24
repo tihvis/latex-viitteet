@@ -35,7 +35,7 @@ class AddBookView(View):
             msg_tuple = self._validator.validate(author_list, title, year, publisher, isbn)
             if msg_tuple[0] == False:
                 return render_template("error.html", error=msg_tuple[1])
-            self._database_relay.add_book(title, author_list, isbn, year, publisher)
+            self._database_relay.add_book(author_list, title, isbn, year, publisher)
             flash("Lisäys onnistui!")
             return redirect("/")      
             #Tähän vielä joku tarkistus onko kyseistä kirjaa jo olemassa tietokannassa.
