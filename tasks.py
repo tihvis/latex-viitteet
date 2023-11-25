@@ -1,7 +1,9 @@
+from os import getenv
 from invoke.tasks import task
-from src.flaskapp.app import db
+from sqlalchemy import create_engine, text
 
 @task
 def init_db(ctx):
-    with db.session() as cursor:
-        cursor.execute(open("schema.sql", "r").read())
+    engine = create_engine("postgresql:///postgres")
+    with engine.begin() as cursor:
+        cursor.execute(text(open("schema.sql", "r").read()))
