@@ -31,10 +31,7 @@ jobs:
       - name: Start postgresl  
         run: sudo systemctl start postgresql
       - name: Create a database
-        run: psql < schema.sql
-        env: 
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
+        run: psql -f schema.sql -p 5432 -U postgres postgres
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@master
       - run: |
