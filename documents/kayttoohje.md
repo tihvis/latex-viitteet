@@ -32,7 +32,7 @@ Tätä terminaalia käytetään tietokannan käynnistämiseen. Käynnistä tieto
 ```
 start-pg.sh
 ```
-ja toivo ihmettä. Jos tietokanta käynnistyy onnistuneesti, jätä terminaali-ikkuna auki ja siirry takaisin toiseen terminaaliin. Siirry siellä hakemistoon src/flask ja anna komento
+ja toivo ihmettä. Jos tietokanta käynnistyy onnistuneesti, jätä terminaali-ikkuna auki ja siirry takaisin toiseen terminaaliin. Siirry siellä hakemistoon src/flaskapp ja anna komento
 ```
 flask run
 ```
