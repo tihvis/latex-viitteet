@@ -32,7 +32,7 @@ jobs:
       - name: Start postgresl  
         run: sudo systemctl start postgresql
       - name: Create a database
-        shell: psql < schema.sql
+        run: psql < schema.sql
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@master
       - run: |
