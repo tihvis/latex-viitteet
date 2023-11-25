@@ -28,8 +28,9 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
+      - name: Start postgresl  
         run: sudo systemctl start postgresql
-      - name: Build database
+      - name: Create a database
         run: poetry run invoke init-db
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@master
