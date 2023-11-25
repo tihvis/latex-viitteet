@@ -8,11 +8,11 @@ def init_db(ctx):
     with engine.begin() as cursor:
         cursor.execute(text(open("schema.sql", "r").read()))
 
-@task
-def run(ctx):
-    ctx.run("python src/flaskapp/app.py")
+#@task
+#def run(ctx):
+#    ctx.run("python src/flaskapp/app.py")
 
-@task
-def robot_test(ctx):
-    ctx.run("robot ./src/tests")
+#@task
+#def robot_test(ctx):
+#    ctx.run("robot ./src/tests")
 
