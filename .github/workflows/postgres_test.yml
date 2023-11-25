@@ -1,4 +1,4 @@
-name: CI
+name: postgres test
 on: push
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
       - name: Start postgresl  
         run: sudo systemctl start postgresql
       - name: Create a database
-        run: poetry run invoke init-db
+        run: createdb
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@master
       - run: |
