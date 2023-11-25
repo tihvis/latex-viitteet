@@ -31,7 +31,7 @@ jobs:
       - name: Start postgresl  
         run: sudo systemctl start postgresql
       - name: Create a database
-        run: psql -f schema.sql -p 5432 -U postgres postgres
+        run: poetry run invoke init-db
         env:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
