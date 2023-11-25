@@ -37,7 +37,7 @@ jobs:
        #   POSTGRES_HOST: localhost
        #   POSTGRES_PORT: 5432
       - name: Setup chromedriver
-        uses: nanasess/setup-chromedriver@master
+        uses: nanasess/setup-chromedriver@v2
       - run: |
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
