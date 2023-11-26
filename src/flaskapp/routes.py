@@ -42,6 +42,32 @@ class AddBookView(View):
             #Eli tarkistus onko sama isbn jo lisätty, tai onko sama otsikko+vuosi kombo jo olemassa
             #     return render_template("error.html", error="Kyseinen kirja on jo lisätty tietokantaan, voit hakea lisäämäsi viitteet etusivulta.")
 
+class AddArticleView(View):
+    methods = ["GET", "POST"]
+    def __init__(self, database_relay, entry_validator, template) -> None:
+        self._database_relay = database_relay
+        self._template = template
+        self._validator = entry_validator
+
+    def dispatch_request(self):
+        if request.method == "GET":
+            return render_template(self._template)
+        else:
+            type = "article"
+            title = str(request.form["title"])
+            author_list = str(request.form["author"])
+            journal = str(request.form["journal"])
+            year = str(request.form["year"])
+            volume = str(request.form["volume"])
+            pages = str(request.form["pages"])
+            #msg_tuple = self._validator.validate(author_list, title, year, journal, volume, pages)
+            #if msg_tuple[0] == False:
+            #    return render_template("error.html", error=msg_tuple[1])
+            #self._database_relay.add_article(author_list, title, journal, year, volume, pages)
+
+            flash("Lisäys onnistui!")
+            return redirect("/")   
+        
 class ListView(View):
     def __init__(self, db, template):
         self._db = db
