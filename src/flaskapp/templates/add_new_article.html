@@ -1,0 +1,34 @@
+<head>
+    <title>Lisää uusi artikkeli</title>
+</head>
+{% extends "layout.html" %}
+{% block content %}
+<body>
+    
+    <h2>Lisää uusi artikkeli</h2>
+<br>
+<form action="/add_new_article" method="POST" enctype="multipart/form-data">
+    Nimike (title): <br>
+    <textarea placeholder="1-80 merkkiä" name="title" rows="1" cols="50"></textarea>
+    <p>
+    Kirjoittajat (author): <br>
+    <textarea placeholder="Lisää uusi kirjoittaja uudelle riville" name="author" rows="5" cols="50" maxlength="250"></textarea>
+    <p>
+    Lehti (journal): <br>
+    <textarea placeholder="1-80 merkkiä" name="journal" rows="1" cols="50"></textarea>
+    <p>
+    Vuosi (year): <br>
+    <input type="number" name="year">
+    <p>
+    Vuosikerta (volume): <br>
+    <input type="number" name="volume">
+    <p>
+    Sivut (pages): <br>
+    <textarea placeholder="esim. 38-46" name="pages" rows="1" cols="50"></textarea>
+    <p>
+<!--    Avainsanat (keywords): <br>
+    <textarea placeholder="Lisää uusi avainsana uudelle riville" name="keywords" rows="5" cols="50" maxlength="250" ></textarea>
+    <p>-->
+    <input type="submit" value="Lisää">
+    <p>
+{% endblock %}
