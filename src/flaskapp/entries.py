@@ -5,12 +5,12 @@ class Database():
     def __init__(self, db) -> None:
         self._db = db
 
-    def add_book(self, authors, title, publisher, year, isbn):
+    def add_book(self, authors, title, publisher, year):
         try:
-            sql = text("INSERT INTO citations (title,publisher,year,isbn) \
-                 VALUES (:title, :publisher, :year, :isbn) RETURNING id")
+            sql = text("INSERT INTO citations (title,publisher,year) \
+                 VALUES (:title, :publisher, :year) RETURNING id")
             citation_id = self._db.session.execute(sql, {"title":title, "publisher":publisher,\
-                 "year":year, "isbn":isbn}).fetchone()[0]
+                 "year":year}).fetchone()[0]
             author_ids = []
             for author in authors.splitlines():
                 author_ids.append(self._add_author(author))
