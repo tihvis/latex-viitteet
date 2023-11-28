@@ -1,8 +1,8 @@
 from os import getenv
-from routes import IndexView, AddBookView, AddArticleView, ListView, EntryValidator
-from entries import Database
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flaskapp.routes import IndexView, AddBookView, AddArticleView, ListView, EntryValidator
+from flaskapp.entries import Database
 
 #from sqlalchemy.sql import text
 
