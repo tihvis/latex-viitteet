@@ -15,10 +15,10 @@ class IndexView(View):
 
 class AddBookView(View):
     methods = ["GET", "POST"]
-    def __init__(self, database_relay, entry_validator, template) -> None:
-        self._database_relay = database_relay
+    def __init__(self, citation_service, entry_validator, template) -> None:
         self._template = template
         self._validator = entry_validator
+        self._citation_service = citation_service
 
     def dispatch_request(self):
         if request.method == "GET":
@@ -34,7 +34,7 @@ class AddBookView(View):
         msg_tuple = self._validator.validate(author_list, title, year, publisher, isbn)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
-        self._database_relay.add_book(author_list, title, isbn, year, publisher)
+        self._citation_service.add_citation(request.form)
         flash("Lisäys onnistui!")
         return redirect("/")
         #Tähän vielä joku tarkistus onko kyseistä kirjaa jo olemassa tietokannassa.
