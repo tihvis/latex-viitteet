@@ -31,11 +31,11 @@ app.add_url_rule(
 
 app.add_url_rule(
     "/add_new_article",
-    view_func=AddArticleView.as_view("add_new_article", db_relay, EntryValidator(),
+    view_func=AddArticleView.as_view("add_new_article", citation_service, EntryValidator(),
          "add_new_article.html"),
 )
 
 app.add_url_rule(
     "/list",
-    view_func=ListView.as_view("list", db_relay, "list.html"),
+    view_func=ListView.as_view("list", citation_service, "list.html"),
 )

@@ -44,8 +44,8 @@ class AddBookView(View):
 
 class AddArticleView(View):
     methods = ["GET", "POST"]
-    def __init__(self, database_relay, entry_validator, template) -> None:
-        self._database_relay = database_relay
+    def __init__(self, citation_service, entry_validator, template) -> None:
+        self._citation_service = citation_service
         self._template = template
         self._validator = entry_validator
 
@@ -63,17 +63,17 @@ class AddArticleView(View):
              year, volume, pages)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
-        #self._database_relay.add_article(author_list, title, journal, year, volume, pages)
+        self._citation_service.add_citation(request.form)
         flash("Lisäys onnistui!")
         return redirect("/")
 
 class ListView(View):
-    def __init__(self, db, template):
-        self._db = db
+    def __init__(self, citation_service, template):
+        self._citation_service = citation_service
         self._template = template
 
     def dispatch_request(self):
-        items = self._db.get_all_citations()
+        items = self._citation_service.list_citations()
         return render_template(self._template, citations=items, amount=len(items))
 
 class ErrorView(View):
