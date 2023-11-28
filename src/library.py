@@ -6,7 +6,7 @@ class Library:
         self.reset_application()
 
     def reset_application(self):
-        requests.post(f"{self._base_url}/tests/reset")
+        requests.post(f"{self._base_url}/tests/reset", timeout=5)
 
 
     def add_book(self, title, author, isbn, year, publisher):
@@ -18,4 +18,4 @@ class Library:
             "publisher": publisher,
         }
 
-        requests.post(f"{self._base_url}/add_new", data=data)
+        requests.post(f"{self._base_url}/add_new", data=data, timeout=5)

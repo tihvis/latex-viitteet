@@ -46,7 +46,7 @@ fail-under=10
 #from-stdin=
 
 # Files or directories to be skipped. They should be base names, not paths.
-ignore=CVS
+ignore=CVS, tests
 
 # Add files or directories matching the regular expressions patterns to the
 # ignore-list. The regex matches against paths and can be in Posix or Windows
@@ -174,7 +174,8 @@ const-naming-style=UPPER_CASE
 
 # Minimum line length for functions/classes that require docstrings, shorter
 # ones are exempt.
-docstring-min-length=-1
+# docstring-min-length=-1  
+#kommentoitu toistaiseksi pois, koska docstringejä ei ole mergetetty
 
 # Naming style matching correct function names.
 function-naming-style=snake_case
@@ -197,7 +198,7 @@ good-names=i,
 good-names-rgxs=
 
 # Include a hint for the correct naming format with invalid-name.
-include-naming-hint=no
+include-naming-hint=yes
 
 # Naming style matching correct inline iteration names.
 inlinevar-naming-style=any
@@ -227,7 +228,8 @@ name-group=
 
 # Regular expression which should only match function or class names that do
 # not require a docstring.
-no-docstring-rgx=^_
+# no-docstring-rgx=^_
+# harkitaan docstring-tarkastusta, kun ne on mergetetty
 
 # List of decorators that produce properties, such as abc.abstractproperty. Add
 # to this list to register other decorators that produce valid properties.
@@ -285,7 +287,7 @@ exclude-too-few-public-methods=
 ignored-parents=
 
 # Maximum number of arguments for function / method.
-max-args=5
+max-args=6
 
 # Maximum number of attributes for a class (see R0902).
 max-attributes=7
@@ -309,7 +311,7 @@ max-public-methods=20
 max-returns=6
 
 # Maximum number of statements in function / method body.
-max-statements=50
+max-statements=25
 
 # Minimum number of public methods for a class (see R0903).
 min-public-methods=2
@@ -340,7 +342,7 @@ indent-string='    '
 max-line-length=100
 
 # Maximum number of lines in a module.
-max-module-lines=1000
+max-module-lines=300
 
 # Allow the body of a class to be on the same line as the declaration if body
 # contains single statement.
@@ -501,7 +503,8 @@ score=yes
 ignore-comments=yes
 
 # Docstrings are removed from the similarity computation
-ignore-docstrings=yes
+# ignore-docstrings=yes
+# docstring-jutut toistaiseksi pois
 
 # Imports are removed from the similarity computation
 ignore-imports=yes
