@@ -23,5 +23,4 @@ class CitationRepository:
         sql = text("SELECT bibtex FROM citations")
         result = self._db.session.execute(sql).fetchall()
         result = [r[0] for r in result]
-        print(result)
         return result

@@ -28,7 +28,7 @@ class BookCitation(Citation):
         self._title = fields["title"]
         self._publisher = fields["publisher"]
         self._year = fields["year"]
-        #self._isbn = fields["isbn"]
+        # self._isbn = fields["isbn"]
 
     @property
     def author(self) -> list:
@@ -60,7 +60,7 @@ class BookCitation(Citation):
             "title": self.title,
             "publisher": self.publisher,
             "year": self.year,
-            "isbn": self.isbn,
+            # "isbn": self.isbn,
         }
         return fields
 
