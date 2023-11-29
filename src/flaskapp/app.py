@@ -6,11 +6,10 @@ from flaskapp.routes import (
     AddBookView,
     AddArticleView,
     ListView,
-    EntryValidator,
 )
 from repositories.citation_repository import CitationRepository
 from services.citation_service import CitationService
-
+from validator import EntryValidator
 # from sqlalchemy.sql import text
 
 app = Flask(__name__)
