@@ -27,11 +27,11 @@ class AddBookView(View):
         type = "book"
         title = str(request.form["title"])
         author_list = str(request.form["author"])
-        isbn = str(request.form["isbn"])
+        #isbn = str(request.form["isbn"])
         year = str(request.form["year"])
         publisher = str(request.form["publisher"])
         #keywords_list = request.form["keywords"]
-        msg_tuple = self._validator.validate(author_list, title, year, publisher, isbn)
+        msg_tuple = self._validator.validate_book(author_list, title, year, publisher)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
         self._citation_service.add_citation(request.form)
@@ -89,12 +89,12 @@ class EntryValidator():
     def __init__(self) -> None:
         pass
 
-    def validate(self, author_list, title, year, publisher, isbn):
+    def validate_book(self, author_list, title, year, publisher):
         if not 1 <= len(title) <= 80:
             return (False, "Kirjan otsikon tulee olla 1-80 merkkiä pitkä.")
-        if not (5 <= len(isbn) <= 17) or not re.match("^[0-9-]+$", isbn):
-            return (False,
-            "ISBN-koodin tulee olla 5-17 merkkiä pitkä, ja koostua vain numeroista ja viivoista.")
+        #if not (5 <= len(isbn) <= 17) or not re.match("^[0-9-]+$", isbn):
+        #    return (False,
+        #    "ISBN-koodin tulee olla 5-17 merkkiä pitkä, ja koostua vain numeroista ja viivoista.")
         if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
             return (False, "Vuosiluku ei kelpaa.")
         if not 2 <= len(publisher) <= 40:
