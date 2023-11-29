@@ -35,7 +35,29 @@ class Database():
         self._db.session.execute(sql, {"author_id":author_id, "citation_id":citation_id})
         #app.db.session.commit()
 
+
     def get_all_citations(self):
-        sql = text("SELECT * FROM citations")
+        sql = text("SELECT C.id, C.title, C.year, C.publisher, "
+               "A.name as author_name FROM citations C "
+               "LEFT JOIN authors_citations AC ON C.id = AC.citation_id "
+               "LEFT JOIN authors A ON AC.author_id = A.id")
+
         result = self._db.session.execute(sql).fetchall()
-        return result
+
+        citations = {}
+        for row in result:
+            citation_id = row[0]
+            if citation_id not in citations:
+                citations[citation_id] = {
+                'id': citation_id,
+                'title': row[1],
+                'publisher': row[2],
+                'year': row[3],
+                'authors': [],
+                }
+            if row[4]:
+                citations[citation_id]['authors'].append(row[4])
+
+        print("citation list values on")
+        print(list(citations.values()))
+        return list(citations.values())
