@@ -2,6 +2,7 @@ from os import getenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flaskapp.routes import (
+    DownloadView,
     IndexView,
     AddBookView,
     AddArticleView,
@@ -10,6 +11,8 @@ from flaskapp.routes import (
 from repositories.citation_repository import CitationRepository
 from services.citation_service import CitationService
 from flaskapp.validator import EntryValidator
+from bibtex.bibtex_creator import BibteXExporter
+
 # from sqlalchemy.sql import text
 
 app = Flask(__name__)
@@ -23,6 +26,8 @@ db = SQLAlchemy(app)
 db_relay = CitationRepository(db)
 
 citation_service = CitationService(db_relay)
+
+bibtex_exporter = BibteXExporter()
 
 app.add_url_rule(
     "/",
@@ -46,4 +51,9 @@ app.add_url_rule(
 app.add_url_rule(
     "/list",
     view_func=ListView.as_view("list", citation_service, "list.html"),
+)
+
+app.add_url_rule(
+    "/download",
+    view_func=DownloadView.as_view("download", citation_service, bibtex_exporter)
 )

@@ -1,5 +1,12 @@
-import re
-from flask import flash, render_template, redirect, request, make_response
+from flask import (
+    Response,
+    flash,
+    render_template,
+    redirect,
+    request,
+    make_response,
+    typing as ft,
+)
 from flask.views import View
 
 # from validator import EntryValidator
@@ -84,3 +91,18 @@ class ErrorView(View):
     def dispatch_request(self):
         items = self._error_msg
         return render_template(self._template, items=items)
+
+
+class DownloadView(View):
+    def __init__(self, citation_service, exporter):
+        self._citation_service = citation_service
+        self._exporter = exporter
+
+    def dispatch_request(self):
+        citations = self._citation_service.list_citations()
+        result = self._exporter.bibobject_list_to_text(citations)
+        return Response(
+            result,
+            mimetype="text/plain",
+            headers={"Content-disposition": "attachment; filename=citations.bibtex"},
+        )

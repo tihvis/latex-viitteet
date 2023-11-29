@@ -19,6 +19,15 @@ class Citation:
     def fields(self) -> dict:
         pass
 
+    @property
+    def citation_key(self):
+        return "".join(self._author.split()) + self._year
+
+    @property
+    def author(self) -> list:
+        """Tekijät listana str muodossa"""
+        return self._author.splitlines()
+
 
 class BookCitation(Citation):
     """Kirja viite luokka, sisältää read-only tiedot viitteestä"""
@@ -29,11 +38,6 @@ class BookCitation(Citation):
         self._publisher = fields["publisher"]
         self._year = fields["year"]
         # self._isbn = fields["isbn"]
-
-    @property
-    def author(self) -> list:
-        """Kirjan tekijät listana str muodossa"""
-        return self._author
 
     @property
     def title(self) -> str:
@@ -56,10 +60,10 @@ class BookCitation(Citation):
     def fields(self) -> dict:
         fields = {
             "type": "book",
-            "author": self.author,
-            "title": self.title,
-            "publisher": self.publisher,
-            "year": self.year,
+            "author": self._author,
+            "title": self._title,
+            "publisher": self._publisher,
+            "year": self._year,
             # "isbn": self.isbn,
         }
         return fields
@@ -75,11 +79,6 @@ class ArticleCitation(Citation):
         self._year = fields["year"]
         self._volume = fields["volume"]
         self._pages = fields["pages"]
-
-    @property
-    def author(self) -> list:
-        """Artikkelin tekijät listana str muodossa"""
-        return self._author
 
     @property
     def title(self) -> str:
@@ -110,12 +109,12 @@ class ArticleCitation(Citation):
     def fields(self) -> dict:
         fields = {
             "type": "article",
-            "author": self.author,
-            "title": self.title,
-            "journal": self.journal,
-            "year": self.year,
-            "volume": self.volume,
-            "pages": self.pages,
+            "author": self._author,
+            "title": self._title,
+            "journal": self._journal,
+            "year": self._year,
+            "volume": self._volume,
+            "pages": self._pages,
         }
         return fields
 
@@ -129,11 +128,6 @@ class InproceedingsCitation(Citation):
         self._title = fields["title"]
         self._year = fields["year"]
         self._booktitle = fields["booktitle"]
-
-    @property
-    def author(self) -> list:
-        """INPROC tekijät listana str muodossa"""
-        return self._author
 
     @property
     def title(self) -> str:
@@ -154,9 +148,9 @@ class InproceedingsCitation(Citation):
     def fields(self) -> dict:
         fields = {
             "type": "inproceedings",
-            "author": self.author,
-            "title": self.title,
-            "year": self.year,
-            "booktitle": self.booktitle,
+            "author": self._author,
+            "title": self._title,
+            "year": self._year,
+            "booktitle": self._booktitle,
         }
         return fields
