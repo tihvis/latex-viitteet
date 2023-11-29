@@ -3,11 +3,11 @@
 </head>
 {% extends "layout.html" %}
 {% block content %}
-<body>
+<div class='container'>
     
     <h2>Lisää uusi kirja</h2>
-<br>
 <form action="/add_new_book" method="POST" enctype="multipart/form-data">
+    <p>
     Nimike (title): <br>
     <textarea placeholder="1-80 merkkiä" name="title" rows="1" cols="50"></textarea>
     <p>
@@ -15,7 +15,7 @@
     <textarea placeholder="Lisää uusi kirjoittaja uudelle riville" name="author" rows="5" cols="50" maxlength="250"></textarea>
     <p>
     Vuosi (year): <br>
-    <input type="number" name="year">
+    <textarea placeholder="esim. 1990" name="year" rows="1" cols="50"></textarea>
     <p>
     Julkaisija (publisher)<br>
     <textarea placeholder="2-40 merkkiä" name="publisher" rows="1" cols="50"></textarea>
@@ -25,4 +25,5 @@
     <p>-->
     <input type="submit" value="Lisää">
     <p>
+</div>
 {% endblock %}

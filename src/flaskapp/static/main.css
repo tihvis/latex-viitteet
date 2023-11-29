@@ -1,0 +1,98 @@
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #e6e2d3;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    padding-left: 20px;
+    background-color: #c4b7a6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #000000; 
+    font-family: 'Copperplate', sans-serif;
+    text-align: left;
+}
+
+h2 {
+    color: #000000;
+    font-family: 'Copperplate', sans-serif;
+    text-align: center;
+}
+
+h3 {
+    color: #000000;
+    font-family: 'Copperplate', sans-serif;
+    text-align: left;
+}
+
+p {
+    color: #000000;
+    line-height: 1.6;
+    text-align: left;
+    font-family: 'Times New Roman', serif;
+}
+
+ul.flashes {
+    text-align: center;
+    list-style: none
+    padding: 20px;
+  }
+
+  form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid #000000;
+    margin-top: 20px;
+}
+
+input[type="submit"] {
+    background-color: #96897f;
+    color: #000000;
+    padding: 10px 15px;
+    border: none; 
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+a:link, a:visited {
+    background-color: #96897f;
+    color: #000000;
+    padding: 10px 15px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    border: none;  
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  textarea {
+      border-radius: 8px;
+      padding: 10px; 
+      background-color: #e6e2d3;
+  }

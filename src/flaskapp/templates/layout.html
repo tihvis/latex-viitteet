@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="fi">
+   <link rel="stylesheet" href="/static/main.css">
+   <meta name="viewport" content="width=device-width initial-scale=1.0">
+   <h1 style="text-align:center; margin-top: 20px;">Latex-viitteet</h1>
+   <hr>
+   <p>
    <body>
       {% with messages = get_flashed_messages() %}
       {% if messages %}
+      <ul class=flashes>
          {% for message in messages %}
-         <li><i><b>{{ message }}</b></i></li>
+         <i><b>{{ message }}</b></i>
          {% endfor %}
+      </ul>
       {% endif %}
       {% endwith %}
       {% block content %}{% endblock %}
+      <div class="button-group">
       <a href="/">Etusivulle</a>
+      </div>
    </body>
 </html>
