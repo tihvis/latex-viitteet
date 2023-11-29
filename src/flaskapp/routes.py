@@ -24,14 +24,7 @@ class AddBookView(View):
         if request.method == "GET":
             return render_template(self._template)
         #riku/ville? olisi näppärää, jos tämä tulisi sisäänkirjautumistietoilla?
-        type = "book"
-        title = str(request.form["title"])
-        author_list = str(request.form["author"])
-        #isbn = str(request.form["isbn"])
-        year = str(request.form["year"])
-        publisher = str(request.form["publisher"])
-        #keywords_list = request.form["keywords"]
-        msg_tuple = self._validator.validate_book(author_list, title, year, publisher)
+        msg_tuple = self._validator.validate_book(request.form)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
         self._citation_service.add_citation(request.form)
@@ -52,15 +45,7 @@ class AddArticleView(View):
     def dispatch_request(self):
         if request.method == "GET":
             return render_template(self._template)
-        type = "article"
-        title = str(request.form["title"])
-        author_list = str(request.form["author"])
-        journal = str(request.form["journal"])
-        year = str(request.form["year"])
-        volume = str(request.form["volume"])
-        pages = str(request.form["pages"])
-        msg_tuple = self._validator.validate_article(author_list, title, journal,
-             year, volume, pages)
+        msg_tuple = self._validator.validate_article(request.form)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
         self._citation_service.add_citation(request.form)
@@ -89,7 +74,12 @@ class EntryValidator():
     def __init__(self) -> None:
         pass
 
-    def validate_book(self, author_list, title, year, publisher):
+    def validate_book(self, data):
+        title = data["title"]
+        year = data["year"]
+        publisher = data["publisher"]
+        author_list = data["author"]
+
         if not 1 <= len(title) <= 80:
             return (False, "Kirjan otsikon tulee olla 1-80 merkkiä pitkä.")
         #if not (5 <= len(isbn) <= 17) or not re.match("^[0-9-]+$", isbn):
@@ -109,7 +99,13 @@ class EntryValidator():
             #    return render_template("error.html", error="Jokaisen kirjailijan
             #  nimessä tulee olla vähintään kaksi nimeä.")
 
-    def validate_article(self, author_list, title, journal, year, volume, pages):
+    def validate_article(self, data):
+        author_list = data["author"]
+        title = data["title"]
+        journal = data["journal"]
+        year = data["year"]
+        volume = data["volume"]
+        pages = data["pages"]
         if not 1 <= len(title) <= 80:
             return (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
         if len(author_list) == 0:
