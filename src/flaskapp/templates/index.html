@@ -1,16 +1,18 @@
 <head>
     <title>Latex-viitteet</title>
 </head>
-{% extends "layout.html" %}
-{% block content %}
-  <h2>Latex-viitteet</h2>
-<ul>
-    <!-- <li><a href="/">Etusivu</a></li> -->
-    <li><a href="/add_new_article">Lisää artikkeli</a></li>
-    <li><a href="/add_new_book">Lisää kirja</a></li>
-    <!-- <li><a href="/">Lisää konf. artikkeli </a></li> -->
-    <li><a href="/list">Hae lisäämäsi viitteet</a></li>
- </ul>
-
+  {% extends "layout.html" %}
+  {% block content %}
+  <div class='container'>
+  <h2>Etusivu</h2>
+  <br>
+  <div class="button-group">
+    <!-- <a href="/">Etusivu</a> -->
+    <a href="/add_new_article">Lisää artikkeli</a>
+    <a href="/add_new_book">Lisää kirja</a></li>
+    <!-- <a href="/">Lisää konf. artikkeli </a> -->
+    <a href="/list">Hae lisäämäsi viitteet</a>
+  </div>
+</div>
 {% endblock %}
 
