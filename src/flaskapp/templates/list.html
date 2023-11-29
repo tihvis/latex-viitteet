@@ -1,19 +1,30 @@
 <head>
-    <title>Lisäämäsi viitteet</title>
+   <title>Lisäämäsi viitteet</title>
 </head>
-   {% extends "layout.html" %}
-   {% block content %}
-   <div class='container'>
- <h2>Lisäämäsi viitteet:</h2>
- {% for citation in citations %}
- <ul>
- <h3><i>{{citation.title}}</i></h3>
-    <p>Kirjailijat: {{ citation.authors|join(', ') }}</p>
-    <p>Vuosi: {{citation.year}}</p>
-    <p>Julkaisija: {{citation.publisher}}</p>
-    <input type="hidden" id="hidden" name="amount" value="{{amount}}">
- </ul>
- <br>
- {% endfor %}
+{% extends "layout.html" %}
+{% block content %}
+<div class='container'>
+   <h2>Lisäämäsi viitteet:</h2>
+   {% for citation in citations %}
+   <ul>
+      <h3><i>{{citation.title}}</i></h3>
+      <p>Kirjailijat: {{ citation.authors|join(', ') }}</p>
+      <p>Vuosi: {{citation.year}}</p>
+      {% if citation.publisher %}
+      <p>Julkaisija: {{ citation.publisher }}</p>
+      {% endif %}
+      {% if citation.journal %}
+      <p>Lehti: {{ citation.journal }}</p>
+      {% endif %}
+      {% if citation.volume %}
+      <p>Vuosikerta: {{ citation.volume }}</p>
+      {% endif %}
+      {% if citation.pages %}
+      <p>Sivut: {{ citation.pages }}</p>
+      {% endif %}
+      <input type="hidden" id="hidden" name="amount" value="{{amount}}">
+   </ul>
+   <br>
+   {% endfor %}
 </div>
- {% endblock %}
+{% endblock %}

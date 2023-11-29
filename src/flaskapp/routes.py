@@ -24,7 +24,6 @@ class AddBookView(View):
         if request.method == "GET":
             return render_template(self._template)
         #riku/ville? olisi näppärää, jos tämä tulisi sisäänkirjautumistietoilla?
-        type = "book"
         title = str(request.form["title"])
         author_list = str(request.form["author"])
         #isbn = str(request.form["isbn"])
@@ -52,7 +51,6 @@ class AddArticleView(View):
     def dispatch_request(self):
         if request.method == "GET":
             return render_template(self._template)
-        type = "article"
         title = str(request.form["title"])
         author_list = str(request.form["author"])
         journal = str(request.form["journal"])
@@ -63,7 +61,7 @@ class AddArticleView(View):
              year, volume, pages)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
-        #self._database_relay.add_article(author_list, title, journal, year, volume, pages)
+        self._database_relay.add_article(author_list, title, journal, year, volume, pages)
         flash("Lisäys onnistui!")
         return redirect("/")
 
