@@ -32,3 +32,66 @@ class TestValidator(unittest.TestCase):
         expected = (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
         output = validator.validate_book([], "Taru sormusten herrasta", "1954", "Allen & Unwin")
         self.assertEqual(expected, output)
+
+    def test_huono_vuosiluku(self):
+        validator = EntryValidator()
+        expected = (False, "Vuosiluku ei kelpaa.")
+        output = validator.validate_book(["Kalle Kalastaja"], "Kallen kalapaikat", -5, "Otava")
+        self.assertEqual(expected, output)
+
+    def test_tavallinen_artikkeli_validoi(self):
+        validator = EntryValidator()
+        author_list, title, journal = ["Antti Ahkera"], "Hometalot", "Kotiliesi"
+        year, volume, pages = "2020", "186", "25-30"
+        expected = (True, "")
+        output = validator.validate_article(author_list, title, journal, year, volume, pages)
+        self.assertEqual(expected, output)
+
+    def test_kirjalija_puuttuu(self):
+        validator = EntryValidator()
+        author_list, title, journal = [], "Hometalot", "Kotiliesi"
+        year, volume, pages = "2020", "186", "25-30"
+        expected = (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
+        output = validator.validate_article(author_list, title, journal, year, volume, pages)
+        self.assertEqual(expected, output)
+
+    def test_title_liian_lyhyt(self):
+        validator = EntryValidator()
+        author_list, title, journal = ["Antti Ahkera"], "", "Kotiliesi"
+        year, volume, pages = "2020", "186", "25-30"
+        expected = (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
+        output = validator.validate_article(author_list, title, journal, year, volume, pages)
+        self.assertEqual(expected, output)
+
+    def test_journalissa_vikaa(self):
+        validator = EntryValidator()
+        author_list, title, journal = ["Antti Ahkera"], "Hometalot", ""
+        year, volume, pages = "2020", "186", "25-30"
+        expected = (False, "Lehden nimen tulee olla 1-80 merkkiä pitkä.")
+        output = validator.validate_article(author_list, title, journal, year, volume, pages)
+        self.assertEqual(expected, output)
+
+    def test_viallinen_vuosiluku(self):
+        validator = EntryValidator()
+        author_list, title, journal = ["Antti Ahkera"], "Hometalot", "Kotiliesi"
+        year, volume, pages = "-5", "186", "25-30"
+        expected = (False, "Vuosiluku ei kelpaa.")
+        output = validator.validate_article(author_list, title, journal, year, volume, pages)
+        self.assertEqual(expected, output)
+
+    def test_viallinen_vuosikerta(self):
+        validator = EntryValidator()
+        author_list, title, journal = ["Antti Ahkera"], "Hometalot", "Kotiliesi"
+        year, volume, pages = "2020", "-186", "25-30"
+        expected = (False, "Vuosikerta ei kelpaa.")
+        output = validator.validate_article(author_list, title, journal, year, volume, pages)
+        self.assertEqual(expected, output)
+
+    def test_viallinen_sivunumero(self):
+        validator = EntryValidator()
+        author_list, title, journal = ["Antti Ahkera"], "Hometalot", "Kotiliesi"
+        year, volume, pages = "2020", "186", "25,30"
+        expected = (False, "Ilmoita sivunumerot muodossa 38-42.")
+        output = validator.validate_article(author_list, title, journal, year, volume, pages)
+        self.assertEqual(expected, output)
+
