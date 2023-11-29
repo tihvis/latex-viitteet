@@ -8,7 +8,7 @@
    {% for citation in citations %}
    <ul>
       <h3><i>{{citation.title}}</i></h3>
-      <p>Kirjailijat: {{ citation.authors|join(', ') }}</p>
+      <p>Kirjailijat: {{ citation.author|replace('\r',', ') }}</p>
       <p>Vuosi: {{citation.year}}</p>
       {% if citation.publisher %}
       <p>Julkaisija: {{ citation.publisher }}</p>
