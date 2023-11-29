@@ -30,13 +30,14 @@ class AddBookView(View):
         msg_tuple = self._validator.validate_book(request.form)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
-        self._citation_service.add_citation(request.form)
-        flash("Lisäys onnistui!")
-        return redirect("/")
-        # Tähän vielä joku tarkistus onko kyseistä kirjaa jo olemassa tietokannassa.
-        # Eli tarkistus onko sama isbn jo lisätty, tai onko sama otsikko+vuosi kombo jo olemassa
-        #     return render_template("error.html", error="Kyseinen kirja on jo lisätty
-        # tietokantaan, voit hakea lisäämäsi viitteet etusivulta.")
+        if self._citation_service.add_citation(request.form):
+            flash("Lisäys onnistui!")
+            return redirect("/")
+
+        return render_template(
+            "error.html",
+            error="Kyseinen kirja on jo lisätty tietokantaan, voit hakea lisäämäsi viitteet etusivulta.",
+        )
 
 
 class AddArticleView(View):
@@ -53,9 +54,14 @@ class AddArticleView(View):
         msg_tuple = self._validator.validate_article(request.form)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
-        self._citation_service.add_citation(request.form)
-        flash("Lisäys onnistui!")
-        return redirect("/")
+        if self._citation_service.add_citation(request.form):
+            flash("Lisäys onnistui!")
+            return redirect("/")
+
+        return render_template(
+            "error.html",
+            error="Kyseinen artikkeli on jo lisätty tietokantaan, voit hakea lisäämäsi viitteet etusivulta.",
+        )
 
 
 class ListView(View):
