@@ -1,6 +1,7 @@
 import re
 from flask import flash, render_template, redirect, request, make_response
 from flask.views import View
+#from validator import EntryValidator
 
 #
 # https://flask.palletsprojects.com/en/2.3.x/views/
@@ -83,11 +84,11 @@ class ErrorView(View):
         items = self._error_msg
         return render_template(self._template, items=items)
 
-class EntryValidator():
-    def __init__(self) -> None:
-        pass
+#class EntryValidator():
+#    def __init__(self) -> None:
+#        pass
 
-    def validate_book(self, author_list, title, year, publisher):
+#   def validate_book(self, author_list, title, year, publisher):
         if not 1 <= len(title) <= 80:
             return (False, "Kirjan otsikon tulee olla 1-80 merkkiä pitkä.")
         #if not (5 <= len(isbn) <= 17) or not re.match("^[0-9-]+$", isbn):
@@ -107,7 +108,7 @@ class EntryValidator():
             #    return render_template("error.html", error="Jokaisen kirjailijan
             #  nimessä tulee olla vähintään kaksi nimeä.")
 
-    def validate_article(self, author_list, title, journal, year, volume, pages):
+#    def validate_article(self, author_list, title, journal, year, volume, pages):
         if not 1 <= len(title) <= 80:
             return (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
         if len(author_list) == 0:

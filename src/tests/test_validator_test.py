@@ -1,5 +1,6 @@
 import unittest
-from flaskapp.routes import EntryValidator
+#from flaskapp.routes import EntryValidator
+from flaskapp.validator import EntryValidator
 
 class TestValidator(unittest.TestCase):
     def test_tavallinen_kirja_validoi(self):
