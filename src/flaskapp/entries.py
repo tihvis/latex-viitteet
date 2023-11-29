@@ -10,8 +10,8 @@ class Database():
             type = "book"
             sql = text("INSERT INTO citations (type, title,publisher,year) \
                  VALUES (:type, :title, :publisher, :year) RETURNING id")
-            citation_id = self._db.session.execute(sql, {"type":type, "title":title, "publisher":publisher,\
-                 "year":year}).fetchone()[0]
+            citation_id = self._db.session.execute(sql, {"type":type, "title":title, \
+                "publisher":publisher, "year":year}).fetchone()[0]
             author_ids = []
             for author in authors.splitlines():
                 author_ids.append(self._add_author(author))
@@ -21,14 +21,14 @@ class Database():
         except: #tää pitäis määritellä, lint: "No exception type(s) specified (bare-except)"
             return False
         return True
-    
+
     def add_article(self, authors, title, journal, year, volume, pages):
         try:
             type = "article"
             sql = text("INSERT INTO citations (type, title, journal, year, volume, pages) \
                  VALUES (:type, :title, :journal, :year, :volume, :pages) RETURNING id")
-            citation_id = self._db.session.execute(sql, {"type":type, "title":title, "journal":journal,\
-                 "year":year, "volume":volume, "pages":pages}).fetchone()[0]
+            citation_id = self._db.session.execute(sql, {"type":type, "title":title, \
+                "journal":journal, "year":year, "volume":volume, "pages":pages}).fetchone()[0]
             author_ids = []
             for author in authors.splitlines():
                 author_ids.append(self._add_author(author))
@@ -52,7 +52,6 @@ class Database():
             VALUES (:author_id, :citation_id)")
         self._db.session.execute(sql, {"author_id":author_id, "citation_id":citation_id})
         #app.db.session.commit()
-
 
     def get_all_citations(self):
         sql = text("SELECT C.id, C.type, C.title, C. journal, C.year, C.publisher, "
