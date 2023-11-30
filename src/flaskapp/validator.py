@@ -1,13 +1,18 @@
 import re
 
-class EntryValidator():
+class EntryValidator:
     def __init__(self) -> None:
         pass
 
-    def validate_book(self, author_list, title, year, publisher):
+    def validate_book(self, data):
+        title = data["title"]
+        year = data["year"]
+        publisher = data["publisher"]
+        author_list = data["author"]
+
         if not 1 <= len(title) <= 80:
             return (False, "Kirjan otsikon tulee olla 1-80 merkkiä pitkä.")
-        #if not (5 <= len(isbn) <= 17) or not re.match("^[0-9-]+$", isbn):
+        # if not (5 <= len(isbn) <= 17) or not re.match("^[0-9-]+$", isbn):
         #    return (False,
         #    "ISBN-koodin tulee olla 5-17 merkkiä pitkä, ja koostua vain numeroista ja viivoista.")
         if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
@@ -18,13 +23,19 @@ class EntryValidator():
             return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
         return (True, "")
         # Väliaikaisesti poistettu
-        #for author in author_list:
+        # for author in author_list:
         #    names = author.split()
-            #if len(names) < 2:
-            #    return render_template("error.html", error="Jokaisen kirjailijan
-            #  nimessä tulee olla vähintään kaksi nimeä.")
+        # if len(names) < 2:
+        #    return render_template("error.html", error="Jokaisen kirjailijan
+        #  nimessä tulee olla vähintään kaksi nimeä.")
 
-    def validate_article(self, author_list, title, journal, year, volume, pages):
+    def validate_article(self, data):
+        author_list = data["author"]
+        title = data["title"]
+        journal = data["journal"]
+        year = data["year"]
+        volume = data["volume"]
+        pages = data["pages"]
         if not 1 <= len(title) <= 80:
             return (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
         if len(author_list) == 0:

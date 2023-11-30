@@ -1,10 +1,20 @@
-from flask import flash, render_template, redirect, request, make_response
+from flask import (
+    Response,
+    flash,
+    render_template,
+    redirect,
+    request,
+    make_response,
+    typing as ft,
+)
 from flask.views import View
-#from validator import EntryValidator #tarviiko tätä? pylintin mielestä turha
+
+# from validator import EntryValidator
 
 #
 # https://flask.palletsprojects.com/en/2.3.x/views/
 #
+
 
 class IndexView(View):
     def __init__(self, template) -> None:
@@ -13,66 +23,65 @@ class IndexView(View):
     def dispatch_request(self):
         return render_template(self._template)
 
+
 class AddBookView(View):
     methods = ["GET", "POST"]
-    def __init__(self, database_relay, entry_validator, template) -> None:
-        self._database_relay = database_relay
+
+    def __init__(self, citation_service, entry_validator, template) -> None:
         self._template = template
         self._validator = entry_validator
+        self._citation_service = citation_service
 
     def dispatch_request(self):
         if request.method == "GET":
             return render_template(self._template)
-        #riku/ville? olisi näppärää, jos tämä tulisi sisäänkirjautumistietoilla?
-        title = str(request.form["title"])
-        author_list = str(request.form["author"])
-        #isbn = str(request.form["isbn"])
-        year = str(request.form["year"])
-        publisher = str(request.form["publisher"])
-        #keywords_list = request.form["keywords"]
-        msg_tuple = self._validator.validate_book(author_list, title, year, publisher)
+        # riku/ville? olisi näppärää, jos tämä tulisi sisäänkirjautumistietoilla?
+        msg_tuple = self._validator.validate_book(request.form)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
-        self._database_relay.add_book(author_list, title, year, publisher)
-        flash("Lisäys onnistui!")
-        return redirect("/")
-        #Tähän vielä joku tarkistus onko kyseistä kirjaa jo olemassa tietokannassa.
-        #Eli tarkistus onko sama isbn jo lisätty, tai onko sama otsikko+vuosi kombo jo olemassa
-        #     return render_template("error.html", error="Kyseinen kirja on jo lisätty
-        # tietokantaan, voit hakea lisäämäsi viitteet etusivulta.")
+        if self._citation_service.add_citation(request.form):
+            flash("Lisäys onnistui!")
+            return redirect("/")
+
+        return render_template(
+            "error.html",
+            error="Kyseinen kirja on jo lisätty tietokantaan, voit hakea lisäämäsi viitteet etusivulta.",
+        )
+
 
 class AddArticleView(View):
     methods = ["GET", "POST"]
-    def __init__(self, database_relay, entry_validator, template) -> None:
-        self._database_relay = database_relay
+
+    def __init__(self, citation_service, entry_validator, template) -> None:
+        self._citation_service = citation_service
         self._template = template
         self._validator = entry_validator
 
     def dispatch_request(self):
         if request.method == "GET":
             return render_template(self._template)
-        title = str(request.form["title"])
-        author_list = str(request.form["author"])
-        journal = str(request.form["journal"])
-        year = str(request.form["year"])
-        volume = str(request.form["volume"])
-        pages = str(request.form["pages"])
-        msg_tuple = self._validator.validate_article(author_list, title, journal,
-             year, volume, pages)
+        msg_tuple = self._validator.validate_article(request.form)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
-        self._database_relay.add_article(author_list, title, journal, year, volume, pages)
-        flash("Lisäys onnistui!")
-        return redirect("/")
+        if self._citation_service.add_citation(request.form):
+            flash("Lisäys onnistui!")
+            return redirect("/")
+
+        return render_template(
+            "error.html",
+            error="Kyseinen artikkeli on jo lisätty tietokantaan, voit hakea lisäämäsi viitteet etusivulta.",
+        )
+
 
 class ListView(View):
-    def __init__(self, db, template):
-        self._db = db
+    def __init__(self, citation_service, template):
+        self._citation_service = citation_service
         self._template = template
 
     def dispatch_request(self):
-        items = self._db.get_all_citations()
+        items = self._citation_service.list_citations()
         return render_template(self._template, citations=items, amount=len(items))
+
 
 class ErrorView(View):
     def __init__(self, error_msg, template):
@@ -82,3 +91,18 @@ class ErrorView(View):
     def dispatch_request(self):
         items = self._error_msg
         return render_template(self._template, items=items)
+
+
+class DownloadView(View):
+    def __init__(self, citation_service, exporter):
+        self._citation_service = citation_service
+        self._exporter = exporter
+
+    def dispatch_request(self):
+        citations = self._citation_service.list_citations()
+        result = self._exporter.bibobject_list_to_text(citations)
+        return Response(
+            result,
+            mimetype="text/plain",
+            headers={"Content-disposition": "attachment; filename=citations.bib"},
+        )
