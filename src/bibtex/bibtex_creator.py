@@ -66,10 +66,10 @@ class BibteXExporter:
 
         for element in elements:
             element_string = ""
-            if type(element) is BookCitation:
+            if isinstance(element, BookCitation):
                 element_string = self._bibtexbook_to_bib(element)
 
-            if type(element) is ArticleCitation:
+            if isinstance(element, ArticleCitation):
                 element_string = self._bibtexarticle_to_bib(element)
 
             output += element_string + "\n"

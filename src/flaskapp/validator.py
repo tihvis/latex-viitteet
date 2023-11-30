@@ -1,10 +1,13 @@
+'''Moduli, joka validoi lomakkeesta saadut syötteet'''
 import re
 
 class EntryValidator:
+    '''Luokka, joka validoi lomakkeesta saadut syötteet'''
     def __init__(self) -> None:
         pass
 
     def validate_book(self, data):
+        '''Metodi, joka validoi kirjaviitteen syötteet'''
         title = data["title"]
         year = data["year"]
         publisher = data["publisher"]
@@ -30,6 +33,7 @@ class EntryValidator:
         #  nimessä tulee olla vähintään kaksi nimeä.")
 
     def validate_article(self, data):
+        '''Metodi, joka validoi artikkeliviitteen syötteet'''
         author_list = data["author"]
         title = data["title"]
         journal = data["journal"]

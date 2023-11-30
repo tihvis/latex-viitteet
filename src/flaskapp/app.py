@@ -8,9 +8,9 @@ from flaskapp.routes import (
     AddArticleView,
     ListView,
 )
+from flaskapp.validator import EntryValidator
 from repositories.citation_repository import CitationRepository
 from services.citation_service import CitationService
-from flaskapp.validator import EntryValidator
 from bibtex.bibtex_creator import BibteXExporter
 
 # from sqlalchemy.sql import text

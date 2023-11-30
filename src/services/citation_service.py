@@ -20,4 +20,3 @@ class CitationService:
 
     def delete_citation(self) -> None:
         """Poistaa viitteen"""
-        pass

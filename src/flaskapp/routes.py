@@ -23,7 +23,6 @@ class IndexView(View):
     def dispatch_request(self):
         return render_template(self._template)
 
-
 class AddBookView(View):
     methods = ["GET", "POST"]
 
@@ -45,9 +44,9 @@ class AddBookView(View):
 
         return render_template(
             "error.html",
-            error="Kyseinen kirja on jo lisätty tietokantaan, voit hakea lisäämäsi viitteet etusivulta.",
+            error="Kyseinen kirja on jo lisätty tietokantaan, \
+                voit hakea lisäämäsi viitteet etusivulta.",
         )
-
 
 class AddArticleView(View):
     methods = ["GET", "POST"]
@@ -69,9 +68,9 @@ class AddArticleView(View):
 
         return render_template(
             "error.html",
-            error="Kyseinen artikkeli on jo lisätty tietokantaan, voit hakea lisäämäsi viitteet etusivulta.",
+            error="Kyseinen artikkeli on jo lisätty tietokantaan, \
+                voit hakea lisäämäsi viitteet etusivulta.",
         )
-
 
 class ListView(View):
     def __init__(self, citation_service, template):
@@ -91,7 +90,6 @@ class ErrorView(View):
     def dispatch_request(self):
         items = self._error_msg
         return render_template(self._template, items=items)
-
 
 class DownloadView(View):
     def __init__(self, citation_service, exporter):

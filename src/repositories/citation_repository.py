@@ -1,5 +1,6 @@
-from sqlalchemy.sql import text
+'''Viitteiden tallennuksesta huolehtiva moduli'''
 import json
+from sqlalchemy.sql import text
 from entities.citation import Citation
 
 
