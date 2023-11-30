@@ -5,10 +5,11 @@
 {% block content %}
 <div class='container'>
    <h2>Lisäämäsi viitteet:</h2>
+   <a href="{{url_for("download")}}">Lataa BibTeX-muodossa</a>
    {% for citation in citations %}
    <ul>
       <h3><i>{{citation.title}}</i></h3>
-      <p>Kirjailijat: {{ citation.authors|join(', ') }}</p>
+      <p>Kirjailijat: {{ citation.author|join(", ")}}</p>
       <p>Vuosi: {{citation.year}}</p>
       {% if citation.publisher %}
       <p>Julkaisija: {{ citation.publisher }}</p>

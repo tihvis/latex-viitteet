@@ -7,6 +7,7 @@
     
     <h2>Lisää uusi kirja</h2>
 <form action="/add_new_book" method="POST" enctype="multipart/form-data">
+    <input type="hidden" id="type" name="type" value="book">
     <p>
     Nimike (title): <br>
     <textarea placeholder="1-80 merkkiä" name="title" rows="1" cols="50"></textarea>
