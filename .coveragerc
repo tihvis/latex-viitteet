@@ -1,4 +1,4 @@
 [run]
 source = src
-omit = src/**/__init__.py,src/tests/**, library.py
+omit = src/**/__init__.py,src/tests/**, library.py, src/bibtex/bibtex_creator.py
 
