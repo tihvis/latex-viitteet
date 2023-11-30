@@ -32,16 +32,30 @@ Tätä terminaalia käytetään tietokannan käynnistämiseen. Käynnistä tieto
 ```
 start-pg.sh
 ```
-ja toivo ihmettä. Jos tietokanta käynnistyy onnistuneesti, jätä terminaali-ikkuna auki ja siirry takaisin toiseen terminaaliin. Siirry siellä hakemistoon src/flaskapp ja anna komento
+ja toivo ihmettä. Jos tietokanta käynnistyy onnistuneesti, jätä terminaali-ikkuna auki ja siirry takaisin toiseen terminaaliin. Anna komentorivillä komento
+```
+psql
+```
+Nyt olet yhteydessä tietokantaan ja promptina näkyy >>>. Anna tietokannalle komento
+```drop schema public cascade; create schema public;
+```
+ja katkaise tietokantayhteys komennolla
+```
+\q
+```
+ja olet takaisin terminaalin komentorivillä. Siirry siellä hakemistoon src/flaskapp komennolla
+```
+cd src/flaskapp
+```
+ja sovelluksen käynnistämiseksi, anna tässä hakemistossa komento
 ```
 flask run
 ```
-Jos olet syntynyt onnellisten tähtien alla, sovellus käynnistyy ja saat pelottavan varoituksen seuraavan kaltaisen ilmoituksen:
+Jos kaikki menee hyvin, sovellus käynnistyy ja näet osoitteen, jossa ohjelma toimii:
 ```
 Running on http://127.0.0.1:5000
 ```
-Voit nyt siirtyä Chrome-selaimeen ja kirjoittaa kyseisen osoitteen selaimen osoitekenttään.
-Sovelluksen suorituksen voi lopettaa terminaalin antamalla ohjeella
+Voit nyt siirtyä Chrome-selaimeen ja kirjoittaa kyseisen osoitteen selaimen osoitekenttään. Pääset selaimeen myös klikkaamalla terminaalissa näkyvää osoitelinkkiä hiiren oikealla näppäimellä ja valitsemalla 'open link'. Sovelluksen suorituksen voi lopettaa terminaalin antamalla ohjeella
 ```
 Press CTRL+C to quit
 ```
@@ -57,12 +71,15 @@ minkä jälkeen voit poistua kehitysympäristöstä komennolla
 ```
 exit
 ```
-Jos haluat kokeilla automaattitestien suorittamista, tulee sinulla olla kolme terminaali-ikkunaa auki. Yksi terminaali tarvitaan tietokantaa varten, toinen sovellusta varten ja kolmas testien ajamista varten. Automaattitestit käynnistyvät projektin päähakemistossa komennolla
+Jos haluat kokeilla automaattitestien suorittamista, tulee sinulla olla kolme terminaali-ikkunaa auki. Yksi terminaali tarvitaan tietokantaa varten, toinen sovellusta varten ja kolmas testien ajamista varten. Automaattitestit, jotka testaavat selaimen toimintaa, käynnistyvät projektin päähakemistossa komennolla
 ```
 robot src/tests
 ```
-ja edellyttävät, että olet siirtynyt tässäkin terminaali-ikkunassa kehitys-ympäristöön komennolla
+ja edellyttävät, että olet siirtynyt tässäkin terminaali-ikkunassa kehitysympäristöön komennolla
 ```
 poetry shell
 ```
-
+Sovelluksen logiikkakerrosta testaavat yksikkötestit eivät tarvitse selainta ja tietokantaa, joten niiden ajamiseen tarvitaan vain yksi terminaali. Testit käynnistyvät päähakemistossa komennolla
+```
+pytest src
+```
