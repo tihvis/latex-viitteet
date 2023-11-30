@@ -81,14 +81,14 @@ class TestValidator(unittest.TestCase):
 
     def test_viallinen_vuosikerta(self):
         validator = EntryValidator()
-        expected = (False, "Vuosikerta ei kelpaa.")
+        expected = (False, "Lehden numero ei kelpaa.")
         article = {"author":"Antti Ahkera", "title":"Hometalot", "journal":"Kotiliesi", "year":"2020", "volume":"-186", "pages":"25-30"}
         output = validator.validate_article(article)
         self.assertEqual(expected, output)
 
     def test_viallinen_sivunumero(self):
         validator = EntryValidator()
-        expected = (False, "Ilmoita sivunumerot muodossa 38-42.")
+        expected = (False, "Ilmoita sivunumerot muodossa 38-42 tai 42.")
         article = {"author":"Antti Ahkera", "title":"Hometalot", "journal":"Kotiliesi", "year":"2020", "volume":"186", "pages":"25,30"}
         output = validator.validate_article(article)
         self.assertEqual(expected, output)
