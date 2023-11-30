@@ -12,8 +12,10 @@ class CitationFactory:
 
 
 class Citation:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, fields):
+        self._author = fields["author"]
+        self._title = fields["title"]
+        self._year = fields["year"]
 
     @property
     def fields(self) -> dict:
@@ -21,40 +23,35 @@ class Citation:
 
     @property
     def citation_key(self):
-        return "".join(self._author.split()) + self._year
+        return "".join(self.author[0].split(" ")[-1]) + self._year
 
     @property
     def author(self) -> list:
         """Tekijät listana str muodossa"""
         return self._author.splitlines()
 
+    @property
+    def title(self) -> str:
+        """Nimi str muodossa"""
+        return self._title
+
+    @property
+    def year(self) -> int:
+        """Julkaisuvuosi int muodossa"""
+        return self._year
+
 
 class BookCitation(Citation):
     """Kirja viite luokka, sisältää read-only tiedot viitteestä"""
 
     def __init__(self, fields: dict) -> None:
-        self._author = fields["author"]
-        self._title = fields["title"]
+        super().__init__(fields)
         self._publisher = fields["publisher"]
-        self._year = fields["year"]
-        # self._isbn = fields["isbn"]
-
-    @property
-    def title(self) -> str:
-        """Kirjan nimi str muodossa"""
-        return self._title
 
     @property
     def publisher(self) -> str:
         """Kirjan kustantaja str muodossa"""
         return self._publisher
-
-    @property
-    def year(self) -> int:
-        """Kirjan julkaisuvuosi int muodossa"""
-        return self._year
-
-    # @property def isbn(self):
 
     @property
     def fields(self) -> dict:
@@ -64,7 +61,6 @@ class BookCitation(Citation):
             "title": self._title,
             "publisher": self._publisher,
             "year": self._year,
-            # "isbn": self.isbn,
         }
         return fields
 
@@ -73,27 +69,15 @@ class ArticleCitation(Citation):
     """Artikkeli viite luokka, sisältää read-only tiedot viitteestä"""
 
     def __init__(self, fields: dict) -> None:
-        self._author = fields["author"]
-        self._title = fields["title"]
+        super().__init__(fields)
         self._journal = fields["journal"]
-        self._year = fields["year"]
         self._volume = fields["volume"]
         self._pages = fields["pages"]
-
-    @property
-    def title(self) -> str:
-        """Artikkelin nimi str muodossa"""
-        return self._title
 
     @property
     def journal(self) -> str:
         """Artikkelin lehti str muodossa"""
         return self._journal
-
-    @property
-    def year(self) -> int:
-        """Artikkelin julkaisuvuosi int muodossa"""
-        return self._year
 
     @property
     def volume(self) -> str:
@@ -124,20 +108,8 @@ class InproceedingsCitation(Citation):
     """Joku konferenssi pöytäkirja emt viite luokka, sisältää read-only tiedot viitteestä"""
 
     def __init__(self, fields: dict) -> None:
-        self._author = fields["author"]
-        self._title = fields["title"]
-        self._year = fields["year"]
+        super().__init__(fields)
         self._booktitle = fields["booktitle"]
-
-    @property
-    def title(self) -> str:
-        """INPROC nimi str muodossa"""
-        return self._title
-
-    @property
-    def year(self) -> int:
-        """Kirjan julkaisuvuosi int muodossa"""
-        return self._year
 
     @property
     def booktitle(self) -> str:
