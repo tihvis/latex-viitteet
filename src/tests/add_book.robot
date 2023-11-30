@@ -93,13 +93,18 @@ Add Book With One Author And Valid Inputs Should Succeed
 
 #tämä testi feilaa lokaalisti, koska on jo tietokannassa
 Add Book With Valid Credentials
-    Set Title  ABC ja niiden frendit
+    Set Title  ABC Aapeli
     Set Authors  Olli Opettaja
     Set Year  1990
     Set Publisher  Otava
     Submit Citation
     Add Book Should Succeed
 
+    Go To Starting Page
+    Starting Page Should Be Open
+    Go To Citation List Page
+    List All Citings Page Should Be Open
+    Page Should Contain  ABC ja niiden frendit
 
 *** Keywords ***
 Add Book Should Succeed

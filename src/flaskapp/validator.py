@@ -49,7 +49,7 @@ class EntryValidator:
         if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
             return (False, "Vuosiluku ei kelpaa.")
         if volume == "" or not volume.isdigit():
-            return (False, "Vuosikerta ei kelpaa.")
+            return (False, "Lehden numero ei kelpaa.")
         if not re.match("^[0-9-]+$", pages):
-            return (False, "Ilmoita sivunumerot muodossa 38-42.")
+            return (False, "Ilmoita sivunumerot muodossa 38-42 tai 42.")
         return (True, "")
