@@ -104,5 +104,5 @@ class DownloadView(View):
         return Response(
             result,
             mimetype="text/plain",
-            headers={"Content-disposition": "attachment; filename=citations.bibtex"},
+            headers={"Content-disposition": "attachment; filename=citations.bib"},
         )
