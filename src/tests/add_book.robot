@@ -22,20 +22,20 @@ Add Book With Too Long Title
     Submit Citation
     Add Book Should Fail With Message  Kirjan otsikon tulee olla 1-80 merkkiä pitkä.
 
-#Tämä tehdään kun uusi tietokanta kunnossa
-#Add Book With Only First Name Of Author
-#    Set Title  Aapelin ankat
-#    Set Authors  Kauko
-#    Set ISBN  999-99999
-#    Set Year  1990
-#    Set Publisher  Otava
-#    Submit Citation
-#    Add Book Should Fail With Message  Jokaisen kirjailijan nimessä tulee olla vähintään kaksi nimeä
+#Tähän puuttuu tarkistus validator-modulissa
+Add Book With Only First Name Of Author
+    Set Title  Aapelin ankat
+    Set Authors  Kauko
+    #Set ISBN  999-99999
+    Set Year  1990
+    Set Publisher  Otava
+    Submit Citation
+    Add Book Should Fail With Message  Jokaisen kirjailijan nimessä tulee olla vähintään kaksi nimeä
 
 #Add Book With Too Short ISBN
 #    Set Title  Maijan mansikkapaikka
 #    Set Authors  Maija Mehiläinen
-#    Set ISBN  99
+    #Set ISBN  99
 #    Set Year  1990
 #    Set Publisher  Otava
 #    Submit Citation
@@ -110,8 +110,6 @@ Add Book With No Publisher
     Submit Citation
     Add Book Should Fail With Message  Kustantajan nimen tulee olla 2-40 merkkiä pitkä.
 
-    
-
 # Add Already Existing Book
 #     Set Title  ABC ja muut aakkoset
 #     Set Authors  Olli Opettaja
@@ -132,14 +130,14 @@ Add Book With No Publisher
 #     Add Book Should Succeed
 
 
-# Add Book With Valid Credentials
-#     Set Title  ABC ja muut aakkoset
-#     Set Authors  Olli Opettaja
-#     Set ISBN  999-99999
-#     Set Year  1990
-#     Set Publisher  Otava
-#     Submit Citation
-#     Add Book Should Succeed
+Add Book With Valid Credentials
+    Set Title  ABC ja muut aakkoset
+    Set Authors  Olli Opettaja
+    #Set ISBN  999-99999
+    Set Year  1990
+    Set Publisher  Otava
+    Submit Citation
+    Add Book Should Succeed
 
 
 *** Keywords ***
