@@ -11,6 +11,7 @@ class CitationService:
     def add_citation(self, data) -> None:
         """Lisää viitteen"""
         citation = CitationFactory.create(data)
+        print("HEY")
         return self._citation_repository.add_citation(citation)
 
     def list_citations(self) -> list:

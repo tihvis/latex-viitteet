@@ -1,0 +1,30 @@
+<head>
+    <title>Lisää uusi konferenssiartikkeli</title>
+</head>
+{% extends "layout.html" %}
+{% block content %}
+<div class='container'>
+    
+    <h2>Lisää uusi konferenssiartikkeli</h2>
+<form action="/add_new_inproceedings" method="POST" enctype="multipart/form-data">
+    <input type="hidden" id="type" name="type" value="inproceedings">
+    <p>
+    Nimike (title): <br>
+    <textarea placeholder="1-80 merkkiä" name="title" rows="1" cols="50"></textarea>
+    <p>
+    Kirjoittajat (author): <br>
+    <textarea placeholder="Lisää uusi kirjoittaja uudelle riville" name="author" rows="5" cols="50" maxlength="250"></textarea>
+    <p>
+    Vuosi (year): <br>
+    <textarea placeholder="esim. 1990" name="year" rows="1" cols="50"></textarea>
+    <p>
+    Konferenssijulkaisu (booktitle)<br>
+    <textarea placeholder="1-80 merkkiä" name="booktitle" rows="1" cols="50"></textarea>
+    <p>
+<!--    Avainsanat (keywords): <br>
+    <textarea placeholder="Lisää uusi avainsana uudelle riville" name="keywords" rows="5" cols="50" maxlength="250" ></textarea>
+    <p>-->
+    <input type="submit" value="Lisää">
+    <p>
+</div>
+{% endblock %}

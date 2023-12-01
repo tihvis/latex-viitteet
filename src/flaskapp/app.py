@@ -2,6 +2,7 @@ from os import getenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flaskapp.routes import (
+    AddInproceedingsView,
     DownloadView,
     IndexView,
     AddBookView,
@@ -47,7 +48,12 @@ app.add_url_rule(
         "add_new_article", citation_service, EntryValidator(), "add_new_article.html"
     ),
 )
-
+app.add_url_rule(
+    "/add_new_inproceedings",
+    view_func=AddInproceedingsView.as_view(
+        "add_new_inproceedings", citation_service, EntryValidator(), "add_new_inproceedings.html"
+    ),
+)
 app.add_url_rule(
     "/list",
     view_func=ListView.as_view("list", citation_service, "list.html"),

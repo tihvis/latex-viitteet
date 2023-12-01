@@ -93,3 +93,9 @@ class TestValidator(unittest.TestCase):
         output = validator.validate_article(article)
         self.assertEqual(expected, output)
 
+    def test_tavallinen_konf(self):
+        validator = EntryValidator()
+        expected = (True, "")
+        inproceedings = {"author":"Vihavainen, Arto\r\nPaksula, Matti", "title":"Extreme Apprenticeship Method in Teaching Programming for Beginners.", "year": "2011", "booktitle": "SIGCSE '11"}
+        output = validator.validate_inproceedings(inproceedings)
+        self.assertEqual(expected, output)

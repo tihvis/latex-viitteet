@@ -48,6 +48,31 @@ class AddBookView(View):
                 voit hakea lisäämäsi viitteet etusivulta.",
         )
 
+class AddInproceedingsView(View):
+    methods = ["GET", "POST"]
+
+    def __init__(self, citation_service, entry_validator, template) -> None:
+        self._citation_service = citation_service
+        self._template = template
+        self._validator = entry_validator
+
+    def dispatch_request(self):
+        if request.method == "GET":
+            return render_template(self._template)
+        msg_tuple = self._validator.validate_inproceedings(request.form)
+        print(request.form)
+        if not msg_tuple[0]:
+            return render_template("error.html", error=msg_tuple[1])
+        if self._citation_service.add_citation(request.form):
+            flash("Lisäys onnistui!")
+            return redirect("/")
+
+        return render_template(
+            "error.html",
+            error="Kyseinen konferenssiartikkeli on jo lisätty tietokantaan, \
+                voit hakea lisäämäsi viitteet etusivulta.",
+        )
+
 class AddArticleView(View):
     methods = ["GET", "POST"]
 

@@ -53,3 +53,20 @@ class EntryValidator:
         if not re.match("^[0-9-]+$", pages):
             return (False, "Ilmoita sivunumerot muodossa 38-42 tai 42.")
         return (True, "")
+
+    def validate_inproceedings(self, data):
+        '''Metodi, joka validoi konferenssiartikkeliviitteen syötteet'''
+        title = data["title"]
+        year = data["year"]
+        booktitle = data["booktitle"]
+        author_list = data["author"]
+
+        if not 1 <= len(title) <= 80:
+            return (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
+        if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
+            return (False, "Vuosiluku ei kelpaa.")
+        if not 1 <= len(booktitle) <= 80:
+            return (False, "Julkaisun nimen tulee olla 2-40 merkkiä pitkä.")
+        if len(author_list) == 0:
+            return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
+        return (True, "")
