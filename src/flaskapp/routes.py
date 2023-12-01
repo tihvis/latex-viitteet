@@ -60,7 +60,6 @@ class AddInproceedingsView(View):
         if request.method == "GET":
             return render_template(self._template)
         msg_tuple = self._validator.validate_inproceedings(request.form)
-        print(request.form)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])
         if self._citation_service.add_citation(request.form):
