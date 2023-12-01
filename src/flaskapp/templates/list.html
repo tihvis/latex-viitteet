@@ -17,6 +17,9 @@
       {% if citation.journal %}
       <p>Lehti: {{ citation.journal }}</p>
       {% endif %}
+      {% if citation.booktitle %}
+      <p>Konferenssijulkaisu: {{ citation.booktitle }}</p>
+      {% endif %}
       {% if citation.volume %}
       <p>Vuosikerta: {{ citation.volume }}</p>
       {% endif %}

@@ -1,4 +1,4 @@
-from entities.citation import BookCitation, ArticleCitation
+from entities.citation import BookCitation, ArticleCitation, InproceedingsCitation
 
 
 class BibteXExporter:
@@ -61,6 +61,15 @@ class BibteXExporter:
         }
         return self._dict_to_bib("article", bibtex_article.citation_key, fields, True)
 
+    def _bibtexinproceedings_to_bib(self, bibtex_book: InproceedingsCitation):
+        fields = {
+            "author": " and ".join(bibtex_book.author),
+            "title": bibtex_book.title,
+            "booktitle": bibtex_book.booktitle,
+            "year": bibtex_book.year,
+        }
+        return self._dict_to_bib("inproceedings", bibtex_book.citation_key, fields, True)
+
     def bibobject_list_to_text(self, elements: list):
         output = ""
 
@@ -71,6 +80,9 @@ class BibteXExporter:
 
             if isinstance(element, ArticleCitation):
                 element_string = self._bibtexarticle_to_bib(element)
+
+            if isinstance(element, InproceedingsCitation):
+                element_string = self._bibtexinproceedings_to_bib(element)
 
             output += element_string + "\n"
 
