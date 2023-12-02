@@ -49,10 +49,6 @@ Go To Add New Inproceedings Page
 Go To Citation List Page
     Go To  ${CITATIONS_LIST_URL}
 
-# Set Authors
-#     [Arguments]  ${author}
-#     Input Text  author  ${author}
-
 Set Authors
     [Arguments]    @{authors}
     FOR  ${author}  IN  @{authors}
