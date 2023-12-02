@@ -14,8 +14,7 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-          POSTGRES_HOST_AUTH_METHOD: trust          
+          POSTGRES_USER: postgres        
         ports:
         - 5432:5432
         options: >-
@@ -47,7 +46,9 @@ jobs:
 
       - name: Run robot tests
         run: bash run_robot_tests_ci.sh
-      
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
       #- name: Run pytest
       #  run: poetry run pytest
       #- name: Run coverage

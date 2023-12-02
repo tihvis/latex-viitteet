@@ -1,8 +1,8 @@
 export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/test
 export SECRET_KEY=eb2d0dfe57915dd533d1021c6dab357a
 
-createdb -U postgres test
-psql -U postgres test < schema.sql
+createdb test
+psql test < schema.sql
 
 poetry run flask --app src/flaskapp/app.py run &
 
@@ -17,7 +17,7 @@ status=$?
 
 kill $(lsof -t -i:5000)
 
-dropdb -U postgres test
+dropdb test
 
 
 exit $status
