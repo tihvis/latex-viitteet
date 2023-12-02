@@ -34,6 +34,9 @@ jobs:
       
       - name: Install dependencies
         run: poetry install
+
+      - name: Install pylint-exit
+        run: pip install pylint-exit
       
       - name: Start postgresl
         run: sudo systemctl start postgresql
@@ -58,8 +61,8 @@ jobs:
       - name: Coverage report to Codecov
         run: bash <(curl -s https://codecov.io/bash)
 
-      #- name: Run pylint
-      #  run: poetry run pylint src
+      - name: Run pylint
+        run: poetry run pylint src || pylint-exit $?
       
       
       
