@@ -2,7 +2,7 @@ export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/test
 export SECRET_KEY=eb2d0dfe57915dd533d1021c6dab357a
 
 createdb test
-psql test < schema.sql
+psql -U postgres test < schema.sql
 
 poetry run flask --app src/flaskapp/app.py run &
 
