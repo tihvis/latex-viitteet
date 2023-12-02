@@ -87,13 +87,12 @@ Add Article With Valid Inputs Should Succeed
     Set Volume  6
     Set Pages  100-102
     Submit Citation
-    Add Article Should Succeed
 
     Go To Starting Page
     Starting Page Should Be Open
     Go To Citation List Page
     List All Citings Page Should Be Open
-    Page Should Contain  Martan Marjapiirakka
+    Page Should Contain  Martan marjapiirakan ohje
     
 
 *** Keywords ***

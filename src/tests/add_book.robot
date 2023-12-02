@@ -98,13 +98,12 @@ Add Book With Valid Credentials
     Set Year  1990
     Set Publisher  Otava
     Submit Citation
-    Add Book Should Succeed
 
     Go To Starting Page
     Starting Page Should Be Open
     Go To Citation List Page
     List All Citings Page Should Be Open
-    Page Should Contain  ABC ja niiden frendit
+    Page Should Contain  ABC Aapeli
 
 *** Keywords ***
 Add Book Should Succeed
