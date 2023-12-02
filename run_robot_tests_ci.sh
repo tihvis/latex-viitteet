@@ -1,4 +1,4 @@
-export DATABASE_URL=postgresql:///test
+export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/test
 export SECRET_KEY=eb2d0dfe57915dd533d1021c6dab357a
 
 createdb test

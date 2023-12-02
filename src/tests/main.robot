@@ -2,7 +2,7 @@
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
-Test Setup  Go To Starting Page
+Test Setup  Run Keywords  Go To Starting Page  Reset Application
 
 *** Test Cases ***
 Click Add New Book Link

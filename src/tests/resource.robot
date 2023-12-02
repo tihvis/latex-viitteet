@@ -1,6 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
-Library  ../library.py
+Library    ../Library.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
@@ -14,6 +14,7 @@ ${CITATIONS_LIST_URL}  http://${SERVER}/list
 Open And Configure Browser
     ${options}  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys
     Call Method  ${options}  add_argument  --no-sandbox
+    Call Method  ${options}  add_argument  --headless
     Open Browser  browser=chrome  options=${options}
     Set Selenium Speed  ${DELAY}
 
