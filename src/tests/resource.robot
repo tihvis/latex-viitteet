@@ -8,6 +8,7 @@ ${DELAY}  0.01 seconds
 ${HOME_URL}  http://${SERVER}
 ${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
 ${ADD_NEW_ARTICLE_URL}  http://${SERVER}/add_new_article
+${ADD_NEW_INPROCEEDINGS_URL}  http://${SERVER}/add_new_inproceedings
 ${CITATIONS_LIST_URL}  http://${SERVER}/list
 
 *** Keywords ***
@@ -27,6 +28,9 @@ Add New Book Page Should Be Open
 Add New Article Page Should Be Open
     Title Should Be  Lisää uusi artikkeli
 
+Add New Inproceedings Page Should Be Open
+    Title Should Be  Lisää uusi konferenssiartikkeli
+
 List All Citings Page Should Be Open
     Title Should Be  Lisäämäsi viitteet 
 
@@ -39,44 +43,41 @@ Go To Add New Book Page
 Go To Add New Article Page
     Go To  ${ADD_NEW_ARTICLE_URL}
 
+Go To Add New Inproceedings Page
+    Go To  ${ADD_NEW_INPROCEEDINGS_URL}
+
 Go To Citation List Page
     Go To  ${CITATIONS_LIST_URL}
 
+# Set Authors
+#     [Arguments]  ${author}
+#     Input Text  author  ${author}
+
 Set Authors
-    [Arguments]  ${author}
-    Input Text  author  ${author}
+    [Arguments]    @{authors}
+    FOR  ${author}  IN  @{authors}
+        Input Text  author  ${author}
+    END
 
 Set Title
     [Arguments]  ${title}
     Input Text  title  ${title}
 
-Set Publisher
-    [Arguments]  ${publisher}
-    Input Text  publisher  ${publisher}
-
 Set Year
     [Arguments]  ${year}
     Input Text  year  ${year}
-
-Set ISBN
-    [Arguments]  ${isbn}
-    Input Text  isbn  ${isbn}
 
 Set Keywords
     [Arguments]  ${keywords}
     Input Text  keywords  ${keywords}
 
-Set Journal
-    [Arguments]  ${journal}
-    Input Text  journal  ${journal}
-
-Set Volume
-    [Arguments]  ${volume}
-    Input Text  volume  ${volume}
-
-Set Pages
-    [Arguments]  ${pages}
-    Input Text  pages  ${pages}
-
 Submit Citation
     Click Button  Lisää
+
+Add Citation Should Succeed
+    Starting Page Should Be Open
+    Page Should Contain  Lisäys onnistui
+
+Add Citation Should Fail With Message
+    [Arguments]  ${message}
+    Page Should Contain  ${message}
