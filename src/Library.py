@@ -1,7 +1,4 @@
 '''robot-testeissä tarvittava moduli'''
-from flask_sqlalchemy import SQLAlchemy
-import psycopg2
-import requests
 import os
 
 from sqlalchemy import create_engine, text
@@ -13,7 +10,7 @@ class Library:
         self.reset_application()
 
     def reset_application(self):
-        engine = create_engine("postgresql:///test")
+        engine = create_engine(os.getenv("DATABASE_URL"))
         with engine.begin() as cur:
             cur.execute(text("TRUNCATE citations"))
             cur.commit()
