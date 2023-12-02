@@ -13,6 +13,10 @@ Click Add New Article Link
     Click Link  Lisää artikkeli
     Add New Article Page Should Be Open
 
+Click Add New Inproceedings Link
+    Click Link  Lisää konferenssiartikkeli
+    Add New Inproceedings Page Should Be Open
+
 Click List All Citations Link
     Click Link  Hae lisäämäsi viitteet
     List All Citings Page Should Be Open
