@@ -25,12 +25,6 @@ class EntryValidator:
         if len(author_list) == 0:
             return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
         return (True, "")
-        # Väliaikaisesti poistettu
-        # for author in author_list:
-        #    names = author.split()
-        # if len(names) < 2:
-        #    return render_template("error.html", error="Jokaisen kirjailijan
-        #  nimessä tulee olla vähintään kaksi nimeä.")
 
     def validate_article(self, data):
         '''Metodi, joka validoi artikkeliviitteen syötteet'''
