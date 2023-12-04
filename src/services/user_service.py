@@ -8,7 +8,7 @@ class UserService():
         self._user_repository = user_repository
         self._crypto_service = crypto_service
 
-    def create_user(self, username : str, password : str):
+    def create_new_user(self, username : str, password : str):
         if self._user_repository.is_username_taken(username):
             return
         new_user = User(username, self._crypto_service.get_hash_from_password(password))

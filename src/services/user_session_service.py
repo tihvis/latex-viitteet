@@ -1,2 +1,4 @@
 class UserSessionService():
-    pass
+    """Hoitaa käyttäjän sessioiden hallinnan"""
+    def __init__(self) -> None:
+        pass
