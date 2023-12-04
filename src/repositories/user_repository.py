@@ -1,15 +1,17 @@
+from entities.user import User
+
 class UserRepository():
-    def __init__(self) -> None:
+    def __init__(self, db) -> None:
+        self._db = db
+
+    def get_user_from_database(self, id):
         pass
 
-    def get_user_from_database(self):
+    def create_user_in_database(self, user : User):
         pass
 
-    def create_user_in_database(self):
+    def update_user_in_database(self, id):
         pass
 
-    def update_user_in_database(self):
-        pass
-
-    def delete_user_from_database(self):
+    def delete_user_from_database(self, id):
         pass

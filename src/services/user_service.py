@@ -10,3 +10,6 @@ class UserService():
 
     def get_user(self):
         pass
+
+    def set_user_password(self, id, password):
+        pass
