@@ -1,4 +1,5 @@
 class User():
+    """Käyttäjä luokka, sisältää käyttäjän id, nimen ja salasanan"""
     def __init__(self, username, password_hash) -> None:
         self._id = None
         self._username = username

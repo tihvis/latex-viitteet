@@ -1,6 +1,7 @@
 from entities.user import User
 
 class UserRepository():
+    """Luokka käyttäjien lisäämistä, poistamista ja muokkausta varten tietokannassa"""
     def __init__(self, db) -> None:
         self._db = db
 
