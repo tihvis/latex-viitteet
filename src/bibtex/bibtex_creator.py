@@ -21,7 +21,7 @@ class BibteXExporter:
         output = ""
 
         output += f"{self._type_prefix_symbol}{citation_type}"
-        output += f"{self._br_open} {citation_key}{self._variable_separator}"
+        output += f"{self._br_open}{citation_key}{self._variable_separator}"
         i = 0
         for entry_key in entries:
             if pretty_print:

@@ -1,5 +1,4 @@
 import unittest
-#from flaskapp.routes import EntryValidator
 from flaskapp.validator import EntryValidator
 
 class TestValidator(unittest.TestCase):

@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name
 '''robot-testeissä tarvittava moduli'''
 import os
 
