@@ -11,8 +11,7 @@ class UserService():
     def create_new_user(self, username : str, password : str):
         if self._user_repository.is_username_taken(username):
             return
-        new_user = User(username, self._crypto_service.get_hash_from_password(password))
-        self._user_repository.create_user_in_database(new_user)
+        # TODO
 
     def delete_user(self, user : User):
         self._user_repository.delete_user_from_database(user)
