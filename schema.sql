@@ -11,4 +11,4 @@ CREATE TABLE citations (
 );
 
 
-CREATE UNIQUE INDEX cite_ind_unique ON citations((bibtex ->> 'type'),(bibtex ->> 'title'),(bibtex ->> 'year'));
+CREATE UNIQUE INDEX cite_ind_unique ON citations(user_id,(bibtex ->> 'type'),(bibtex ->> 'title'),(bibtex ->> 'year'));
