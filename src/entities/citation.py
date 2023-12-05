@@ -38,7 +38,7 @@ class Citation:
     @property
     def year(self) -> int:
         """Julkaisuvuosi int muodossa"""
-        return self._year
+        return int(self._year)
 
 
 class BookCitation(Citation):
