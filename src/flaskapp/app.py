@@ -8,11 +8,16 @@ from flaskapp.routes import (
     AddBookView,
     AddArticleView,
     ListView,
+    UserDebugView
 )
 from flaskapp.validator import EntryValidator
 from repositories.citation_repository import CitationRepository
 from services.citation_service import CitationService
 from bibtex.bibtex_creator import BibteXExporter
+
+from repositories.user_repository import UserRepository
+from services.user_crypto_service import UserCryptoService
+from services.user_service import UserService
 
 # from sqlalchemy.sql import text
 
@@ -29,6 +34,10 @@ db_relay = CitationRepository(db)
 citation_service = CitationService(db_relay)
 
 bibtex_exporter = BibteXExporter()
+
+user_repo = UserRepository(db)
+user_crypto_service = UserCryptoService()
+user_service = UserService(user_repo, user_crypto_service)
 
 app.add_url_rule(
     "/",
@@ -62,4 +71,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/download",
     view_func=DownloadView.as_view("download", citation_service, bibtex_exporter)
+)
+
+## TEMP DELETE THIS
+app.add_url_rule(
+    "/debug_users",
+    view_func=UserDebugView.as_view("debug_users", user_service, "error.html")
 )
