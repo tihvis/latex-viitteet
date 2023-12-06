@@ -128,13 +128,3 @@ class DownloadView(View):
             mimetype="text/plain",
             headers={"Content-disposition": "attachment; filename=citations.bib"},
         )
-
-class UserDebugView(View):
-    def __init__(self, user_service, template):
-        self._user_service = user_service
-        self._template = template
-
-    def dispatch_request(self):
-        #self._user_service.create_new_user("test", "test")
-        items = self._user_service.get_user_by_id("bdebd582-1a6e-417c-9585-cd2a08c1ea0b").username
-        return render_template(self._template, error=items)

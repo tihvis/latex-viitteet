@@ -72,9 +72,3 @@ app.add_url_rule(
     "/download",
     view_func=DownloadView.as_view("download", citation_service, bibtex_exporter)
 )
-
-## TEMP DELETE THIS
-app.add_url_rule(
-    "/debug_users",
-    view_func=UserDebugView.as_view("debug_users", user_service, "error.html")
-)
