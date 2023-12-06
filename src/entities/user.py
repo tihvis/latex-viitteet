@@ -12,10 +12,6 @@ class User(UserMixin):
         return self._username
     
     @property
-    def id(self):
-        return self._id
-    
-    @property
     def get_id(self):
         return self._id
     
