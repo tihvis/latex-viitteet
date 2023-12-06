@@ -9,17 +9,22 @@ class UserService():
         self._crypto_service = crypto_service
 
     def create_new_user(self, username : str, password : str):
+        # validate username
+        # validate password
         if self._user_repository.is_username_taken(username):
             return
-        # Add validation checks
         new_user = User(self._crypto_service.create_user_uuid(), username, self._crypto_service.create_hash_from_password(password))
         self._user_repository.create_user_in_database(new_user)
 
     def delete_user(self, user : User):
         self._user_repository.delete_user_from_database(user)
 
-    def get_user_by_id(self, id):
-        return self._user_repository.get_user_by_id_from_database()
+    def get_user_by_id(self, user_uuid : str):
+        return self._user_repository.get_user_by_id_from_database(user_uuid)
 
-    def set_user_password(self, user : User, password : str):
-        pass
+    def set_new_user_password(self, user : User, password : str):
+        # validate password
+        new_hash = self._crypto_service.create_hash_from_password(password)
+        user.set_password_hash(new_hash)
+        self._user_repository.update_user_data(user)
+        

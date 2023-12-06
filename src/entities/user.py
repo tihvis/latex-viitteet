@@ -18,3 +18,10 @@ class User(UserMixin):
     @property
     def get_id(self):
         return self._id
+    
+    @property
+    def password_hash(self):
+        return self._password_hash
+    
+    def set_password_hash(self, password_hash):
+        self._password_hash = password_hash
