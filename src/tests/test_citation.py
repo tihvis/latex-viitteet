@@ -81,3 +81,32 @@ class TestArticleCitation(unittest.TestCase):
         expected = "15--25"
         output = self.citation.pages
         self.assertEqual(expected, output)
+
+class InproceedingsCitation(unittest.TestCase):
+    def setUp(self) -> None:
+        fields = {
+            "type": "inproceedings",
+            "author": "Keijo Keihäsmies",
+            "title": "Keihäänheitto Suomessa",
+            "year": "2023",
+            "booktitle": "Keihäänheittäjien kesäpäivät",
+        }
+        self.citation = CitationFactory.create(fields)
+
+    def test_author_returns_correct_list(self):
+        expected = ["Keijo Keihäsmies"]
+        output = self.citation.author
+        self.assertEqual(expected, output)
+
+    def test_title_returns_correct_title(self):
+        expected = "Keihäänheitto Suomessa"
+        output = self.citation.title
+        self.assertEqual(expected, output)
+
+    def test_year_returns_int(self):
+        self.assertIsInstance(self.citation.year, int)
+
+    def test_booktitle_returns_correct_booktitle(self):
+        expected = "Keihäänheittäjien kesäpäivät"
+        output = self.citation.booktitle
+        self.assertEqual(expected, output)
