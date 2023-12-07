@@ -17,12 +17,6 @@ class TestValidator(unittest.TestCase):
         output = validator.validate_book(book)
         self.assertEqual(expected, output)
 
-    #def test_huono_isbn(self):
-    #    validator = EntryValidator()
-    #    expected = (False, "ISBN-koodin tulee olla 5-17 merkkiä pitkä, ja koostua vain numeroista ja viivoista.")
-    #    output = validator.validate(["J. R. R. Tolkien"], "Taru sormusten herrasta", "1954", "Allen & Unwin", "fjsdskhfsdkhdlsajdas")
-    #    self.assertEqual(expected, output)
-
     def test_liian_liian_lyhyt_kustantaja(self):
         validator = EntryValidator()
         expected = (False, "Kustantajan nimen tulee olla 2-40 merkkiä pitkä.")
@@ -98,4 +92,60 @@ class TestValidator(unittest.TestCase):
         expected = (True, "")
         inproceedings = {"author":"Vihavainen, Arto\r\nPaksula, Matti", "title":"Extreme Apprenticeship Method in Teaching Programming for Beginners.", "year": "2011", "booktitle": "SIGCSE '11"}
         output = validator.validate_inproceedings(inproceedings)
+        self.assertEqual(expected, output)
+
+    def test_tavallinen_rekisteroityminen(self):
+        validator = EntryValidator()
+        expected = (True, "")
+        credentials = {"username":"Testikayttaja", "password":"SALAs4n4"}
+        output = validator.validate_credentials(credentials)
+        self.assertEqual(expected, output)
+
+    def test_liian_lyhyt_kayttajatunnus(self):
+        validator = EntryValidator()
+        expected = (False, "Käyttäjätunnuksen on oltava 6-30 merkkiä pitkä.")
+        credentials = {"username":"testi", "password":"SALAs4n4"}
+        output = validator.validate_credentials(credentials)
+        self.assertEqual(expected, output)
+
+    def test_liian_pitka_kayttajatunnus(self):
+        validator = EntryValidator()
+        expected = (False, "Käyttäjätunnuksen on oltava 6-30 merkkiä pitkä.")
+        credentials = {"username":"Testitestitestitestitestitestit", "password":"SALAs4n4"}
+        output = validator.validate_credentials(credentials)
+        self.assertEqual(expected, output)
+
+    def test_liian_lyhyt_salasana(self):
+        validator = EntryValidator()
+        expected = (False, "Salasanan on oltava 8-30 merkkiä pitkä.")
+        credentials = {"username":"testikayttaja", "password":"S4las"}
+        output = validator.validate_credentials(credentials)
+        self.assertEqual(expected, output)
+
+    def test_liian_pitka_salasana(self):
+        validator = EntryValidator()
+        expected = (False, "Salasanan on oltava 8-30 merkkiä pitkä.")
+        credentials = {"username":"testikayttaja", "password":"S4lasanaS4lasanaS4lasanaS4lasan"}
+        output = validator.validate_credentials(credentials)
+        self.assertEqual(expected, output)
+
+    def test_ei_numeroa_salasanassa(self):
+        validator = EntryValidator()
+        expected = (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
+        credentials = {"username":"testikayttaja", "password":"Salasana"}
+        output = validator.validate_credentials(credentials)
+        self.assertEqual(expected, output)
+
+    def test_ei_isoa_kirjainta_salasanassa(self):
+        validator = EntryValidator()
+        expected = (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
+        credentials = {"username":"testikayttaja", "password":"s4lasana"}
+        output = validator.validate_credentials(credentials)
+        self.assertEqual(expected, output)
+
+    def test_ei_pienta_kirjainta_salasanassa(self):
+        validator = EntryValidator()
+        expected = (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
+        credentials = {"username":"testikayttaja", "password":"SALASAN4"}
+        output = validator.validate_credentials(credentials)
         self.assertEqual(expected, output)
