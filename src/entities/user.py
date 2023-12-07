@@ -13,7 +13,7 @@ class User(UserMixin):
     
     def get_id(self):
         return self._id
-    
+
     @property
     def password_hash(self):
         return self._password_hash

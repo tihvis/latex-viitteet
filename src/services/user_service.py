@@ -23,6 +23,14 @@ class UserService():
 
     def get_user_by_id(self, user_uuid : str):
         return self._user_repository.get_user_by_id_from_database(user_uuid)
+    
+    def check_user_credentials(self, username, password, user: User):
+        if user is not None and user.username == username and self._crypto_service.check_password(password, user.password_hash):
+            return True
+        return False
+    
+    def get_user_by_username(self, username: str):
+        return self._user_repository.get_user_by_username_from_database(username)
 
     def set_new_user_password(self, user : User, password : str):
         # validate password

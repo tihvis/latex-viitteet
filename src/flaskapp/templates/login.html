@@ -1,0 +1,20 @@
+<head>
+    <title>Kirjaudu sisään</title>
+ </head>
+ {% extends "layout.html" %}
+ {% block content %}
+ <div class='container'>
+    <h2>Kirjaudu sisään</h2>
+<form action="/login" method="POST" enctype="multipart/form-data">
+<p>
+    Käyttäjätunnus: <br>
+    <input type="text" name="username" rows="1" cols="50"></textarea>
+    <p>
+    Salasana: <br>
+    <input type="password" name="password" rows="1" cols="50"></textarea>
+    <p>
+    <input type="submit" value="Kirjaudu sisään">
+    <p>
+    <a href="/register">Rekisteröidy</a>
+    </div>
+{% endblock %}

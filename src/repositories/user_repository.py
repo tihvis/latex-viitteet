@@ -12,6 +12,14 @@ class UserRepository():
         if len(result) < 1:
             return None
         return User(result[0], result[1], result[2])
+    
+    def get_user_by_username_from_database(self, username: str):
+        sql = text("SELECT uuid, username, password_hash FROM users WHERE username=:username")
+        result = self._db.session.execute(sql, {"username":username}).fetchall()
+        if len(result) < 1:
+            return None
+        result = result[0]
+        return User(result[0], result[1], result[2])
 
     def create_user_in_database(self, user : User):
         try:
