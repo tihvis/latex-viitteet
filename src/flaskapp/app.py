@@ -1,6 +1,8 @@
 from os import getenv
 from flask import Flask
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from entities.user import User
 from flaskapp.routes import (
     AddInproceedingsView,
     DownloadView,
@@ -8,11 +10,19 @@ from flaskapp.routes import (
     AddBookView,
     AddArticleView,
     ListView,
+    LoginView,
+    LogoutView,
+    RegisterView,
+    RegisterView,
 )
 from flaskapp.validator import EntryValidator
 from repositories.citation_repository import CitationRepository
 from services.citation_service import CitationService
 from bibtex.bibtex_creator import BibteXExporter
+
+from repositories.user_repository import UserRepository
+from services.user_crypto_service import UserCryptoService
+from services.user_service import UserService
 
 # from sqlalchemy.sql import text
 
@@ -29,6 +39,17 @@ db_relay = CitationRepository(db)
 citation_service = CitationService(db_relay)
 
 bibtex_exporter = BibteXExporter()
+
+user_repo = UserRepository(db)
+user_crypto_service = UserCryptoService()
+user_service = UserService(user_repo, user_crypto_service)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+@login_manager.user_loader
+def load_user(user_id):
+    return user_repo.get_user_by_id_from_database(user_id)
 
 app.add_url_rule(
     "/",
@@ -62,4 +83,21 @@ app.add_url_rule(
 app.add_url_rule(
     "/download",
     view_func=DownloadView.as_view("download", citation_service, bibtex_exporter)
+)
+
+app.add_url_rule(
+    "/register",
+    view_func=RegisterView.as_view("register", user_service, EntryValidator(), "register.html"
+    ),
+)
+
+app.add_url_rule(
+    "/login",
+    view_func=LoginView.as_view("login", user_service, login_manager, "login.html"
+    ),
+)
+
+app.add_url_rule(
+    "/logout",
+    view_func=LogoutView.as_view("logout")
 )

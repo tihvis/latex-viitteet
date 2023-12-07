@@ -1,8 +1,8 @@
 *** Settings ***
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
-Suite Teardown  Close Browser
-Test Setup  Run Keywords  Go To Starting Page  Reset Application
+Suite Teardown  Run Keywords  Logout  Close Browser
+Test Setup  Run Keywords  Go To Starting Page
 
 *** Test Cases ***
 Click Add New Book Link
@@ -20,4 +20,8 @@ Click Add New Inproceedings Link
 Click List All Citations Link
     Click Link  Hae lisäämäsi viitteet
     List All Citings Page Should Be Open
+
+#Click Register Link
+#    Click Link  Luo uusi käyttäjätunnus
+#    Register Page Should Be Open
 

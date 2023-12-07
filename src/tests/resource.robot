@@ -6,6 +6,8 @@ Library    ../Library.py
 ${SERVER}  localhost:5000
 ${DELAY}  0.01 seconds
 ${HOME_URL}  http://${SERVER}
+${REGISTER_URL}  http://${SERVER}/register
+${LOGIN_URL}  http://${SERVER}/login
 ${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
 ${ADD_NEW_ARTICLE_URL}  http://${SERVER}/add_new_article
 ${ADD_NEW_INPROCEEDINGS_URL}  http://${SERVER}/add_new_inproceedings
@@ -18,6 +20,7 @@ Open And Configure Browser
     Call Method  ${options}  add_argument  --headless
     Open Browser  browser=chrome  options=${options}
     Set Selenium Speed  ${DELAY}
+    Register And Login Test User
 
 Starting Page Should Be Open
     Title Should Be  Latex-viitteet
@@ -34,6 +37,9 @@ Add New Inproceedings Page Should Be Open
 List All Citings Page Should Be Open
     Title Should Be  Lisäämäsi viitteet 
 
+Register Page Should Be Open
+    Title Should Be  Luo uusi käyttäjätunnus
+
 Go To Starting Page
     Go To  ${HOME_URL}
 
@@ -48,6 +54,12 @@ Go To Add New Inproceedings Page
 
 Go To Citation List Page
     Go To  ${CITATIONS_LIST_URL}
+
+Go To Register Page
+    Go To  ${REGISTER_URL}
+
+Go To Login Page
+    Go To  ${LOGIN_URL}
 
 Set Authors
     [Arguments]    @{authors}
@@ -67,6 +79,14 @@ Set Keywords
     [Arguments]  ${keywords}
     Input Text  keywords  ${keywords}
 
+Set Username
+    [Arguments]  ${username}
+    Input Text  username  ${username}
+
+Set Password
+    [Arguments]  ${password}
+    Input Text  password  ${password}    
+
 Submit Citation
     Click Button  Lisää
 
@@ -77,3 +97,19 @@ Add Citation Should Succeed
 Add Citation Should Fail With Message
     [Arguments]  ${message}
     Page Should Contain  ${message}
+
+
+Register And Login Test User
+    Go To Register Page
+    Set Username  Testuser
+    Set Password  Testpassword1
+    Click Button  Rekisteröidy
+
+    Go To Login Page
+    Set Username  Testuser
+    Set Password  Testpassword1
+    Click Button  Kirjaudu sisään
+
+Logout
+    Go To Starting Page
+    Click Link  Kirjaudu ulos
