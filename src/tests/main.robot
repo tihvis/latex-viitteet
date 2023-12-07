@@ -21,3 +21,7 @@ Click List All Citations Link
     Click Link  Hae lisäämäsi viitteet
     List All Citings Page Should Be Open
 
+Click Register Link
+    Click Link  Luo uusi käyttäjätunnus
+    Register Page Should Be Open
+

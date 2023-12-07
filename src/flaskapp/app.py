@@ -8,7 +8,6 @@ from flaskapp.routes import (
     AddBookView,
     AddArticleView,
     ListView,
-    UserDebugView,
     RegisterView,
 )
 from flaskapp.validator import EntryValidator

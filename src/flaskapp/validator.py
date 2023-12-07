@@ -70,7 +70,7 @@ class EntryValidator:
         username = data["username"]
         password = data["password"]
 
-        if not 5 <= len(username) <= 30:
+        if not 6 <= len(username) <= 30:
             return (False, "Käyttäjätunnuksen on oltava 6-30 merkkiä pitkä.")
         if not 8 <= len(password) <= 30:
             return (False, "Salasanan on oltava 8-30 merkkiä pitkä.")

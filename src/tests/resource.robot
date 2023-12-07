@@ -6,6 +6,7 @@ Library    ../Library.py
 ${SERVER}  localhost:5000
 ${DELAY}  0.01 seconds
 ${HOME_URL}  http://${SERVER}
+${REGISTER_URL}  http://${SERVER}/register
 ${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
 ${ADD_NEW_ARTICLE_URL}  http://${SERVER}/add_new_article
 ${ADD_NEW_INPROCEEDINGS_URL}  http://${SERVER}/add_new_inproceedings
@@ -34,6 +35,9 @@ Add New Inproceedings Page Should Be Open
 List All Citings Page Should Be Open
     Title Should Be  Lisäämäsi viitteet 
 
+Register Page Should Be Open
+    Title Should Be  Luo uusi käyttäjätunnus
+
 Go To Starting Page
     Go To  ${HOME_URL}
 
@@ -48,6 +52,9 @@ Go To Add New Inproceedings Page
 
 Go To Citation List Page
     Go To  ${CITATIONS_LIST_URL}
+
+Go To Register Page
+    Go To  ${REGISTER_URL}
 
 Set Authors
     [Arguments]    @{authors}
@@ -66,6 +73,14 @@ Set Year
 Set Keywords
     [Arguments]  ${keywords}
     Input Text  keywords  ${keywords}
+
+Set Username
+    [Arguments]  ${username}
+    Input Text  username  ${username}
+
+Set Password
+    [Arguments]  ${password}
+    Input Text  password  ${password}    
 
 Submit Citation
     Click Button  Lisää
