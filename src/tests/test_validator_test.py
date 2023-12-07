@@ -1,5 +1,4 @@
 import unittest
-#from flaskapp.routes import EntryValidator
 from flaskapp.validator import EntryValidator
 
 class TestValidator(unittest.TestCase):
@@ -148,4 +147,31 @@ class TestValidator(unittest.TestCase):
         expected = (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
         credentials = {"username":"testikayttaja", "password":"SALASAN4"}
         output = validator.validate_credentials(credentials)
+        
+    def test_viallinen_vuosiluku(self):
+        validator = EntryValidator()
+        expected = (False, "Vuosiluku ei kelpaa.")
+        inproceedings = {"author":"Vihulainen, Arto", "title":"Teaching Programming for Beginners.", "year": "-2011", "booktitle": "SIGCSE '11"}
+        output = validator.validate_inproceedings(inproceedings)
+        self.assertEqual(expected, output)
+
+    def test_kirjoittajan_nimi_puuttuu(self):
+        validator = EntryValidator()
+        expected = (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
+        inproceedings = {"author":"", "title":"Teaching Programming for Beginners.", "year": "2011", "booktitle": "SIGCSE '11"}
+        output = validator.validate_inproceedings(inproceedings)
+        self.assertEqual(expected, output)
+
+    def test_artikkelin_nimi_puuttuu(self):
+        validator = EntryValidator()
+        expected = (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
+        inproceedings = {"author":"Vihulainen, Arto", "title":"", "year": "2011", "booktitle": "SIGCSE '11"}
+        output = validator.validate_inproceedings(inproceedings)
+        self.assertEqual(expected, output)
+
+    def test_julkaisun_nimi_puuttuu(self):
+        validator = EntryValidator()
+        expected = (False, "Julkaisun nimen tulee olla 2-40 merkkiä pitkä.")
+        inproceedings = {"author":"Vihulainen, Arto", "title":"Teaching Programming for Beginners.", "year": "2011", "booktitle": ""}
+        output = validator.validate_inproceedings(inproceedings)
         self.assertEqual(expected, output)
