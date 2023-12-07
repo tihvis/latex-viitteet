@@ -10,7 +10,7 @@ class UserService():
 
     def create_new_user(self, username: str, password: str):
         if self._user_repository.is_username_taken(username):
-            return
+            return False
         new_user = User(self._crypto_service.create_user_uuid(), username, self._crypto_service.create_hash_from_password(password))
         return self._user_repository.create_user_in_database(new_user)
     
@@ -38,6 +38,4 @@ class UserService():
         user.set_password_hash(new_hash)
         self._user_repository.update_user_data(user)
 
-    def debug_dump_users(self):
-        return str(self._user_repository.debug_dump_db())
 
