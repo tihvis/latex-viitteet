@@ -29,7 +29,6 @@ class UserService():
         return self._user_repository.get_user_by_username_from_database(username)
 
     def set_new_user_password(self, user : User, password : str):
-        # validate password
         new_hash = self._crypto_service.create_hash_from_password(password)
         user.set_password_hash(new_hash)
         self._user_repository.update_user_data(user)
