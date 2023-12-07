@@ -8,9 +8,10 @@ class UserRepository():
 
     def get_user_by_id_from_database(self, user_uuid : str):
         sql = text("SELECT uuid, username, password_hash FROM users WHERE uuid=:uuid")
-        result = self._db.session.execute(sql, {"uuid" : user_uuid}).fetchall()[0]
+        result = self._db.session.execute(sql, {"uuid" : user_uuid}).fetchall()
         if len(result) < 1:
             return None
+        result = result[0]
         return User(result[0], result[1], result[2])
     
     def get_user_by_username_from_database(self, username: str):
