@@ -1,7 +1,7 @@
 *** Settings ***
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
-Suite Teardown  Close Browser
+Suite Teardown  Run Keywords  Logout  Close Browser
 Test Setup  Go To Add New Book Page
 
 *** Test Cases ***

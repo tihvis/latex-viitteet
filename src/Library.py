@@ -10,7 +10,4 @@ class Library:
         self.reset_application()
 
     def reset_application(self):
-        engine = create_engine(os.getenv("DATABASE_URL"))
-        with engine.begin() as cur:
-            cur.execute(text("TRUNCATE citations"))
-            cur.commit()
+        pass

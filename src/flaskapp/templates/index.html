@@ -6,9 +6,9 @@
   <div class='container'>
   <h2>Etusivu</h2>
   <br>
+  {% if current_user.is_authenticated %}
   <div class="button-group">
-    <a href="/register">Luo uusi käyttäjätunnus</a>
-    <a href="/login">Kirjaudu sisään</a>
+    <a href="/logout">Kirjaudu ulos</a>
   </div>
   <br>
   <div class="button-group">
@@ -17,6 +17,13 @@
     <a href="/add_new_inproceedings">Lisää konferenssiartikkeli </a>
     <a href="/list">Hae lisäämäsi viitteet</a>
   </div>
+  {% else %}
+  <div class="button-group">
+    <a href="/login">Kirjaudu sisään</a>
+    <a href="/register">Rekisteröidy</a>
+  </div>
+  {% endif %}
+  <br>
 </div>
 {% endblock %}
 
