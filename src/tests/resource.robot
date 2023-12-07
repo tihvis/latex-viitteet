@@ -7,6 +7,7 @@ ${SERVER}  localhost:5000
 ${DELAY}  0.01 seconds
 ${HOME_URL}  http://${SERVER}
 ${REGISTER_URL}  http://${SERVER}/register
+${LOGIN_URL}  http://${SERVER}/login
 ${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
 ${ADD_NEW_ARTICLE_URL}  http://${SERVER}/add_new_article
 ${ADD_NEW_INPROCEEDINGS_URL}  http://${SERVER}/add_new_inproceedings
@@ -19,6 +20,7 @@ Open And Configure Browser
     Call Method  ${options}  add_argument  --headless
     Open Browser  browser=chrome  options=${options}
     Set Selenium Speed  ${DELAY}
+    Register And Login Test User
 
 Starting Page Should Be Open
     Title Should Be  Latex-viitteet
@@ -56,6 +58,9 @@ Go To Citation List Page
 Go To Register Page
     Go To  ${REGISTER_URL}
 
+Go To Login Page
+    Go To  ${LOGIN_URL}
+
 Set Authors
     [Arguments]    @{authors}
     FOR  ${author}  IN  @{authors}
@@ -92,3 +97,19 @@ Add Citation Should Succeed
 Add Citation Should Fail With Message
     [Arguments]  ${message}
     Page Should Contain  ${message}
+
+
+Register And Login Test User
+    Go To Register Page
+    Set Username  Testuser
+    Set Password  Testpassword1
+    Click Button  Rekisteröidy
+
+    Go To Login Page
+    Set Username  Testuser
+    Set Password  Testpassword1
+    Click Button  Kirjaudu sisään
+
+Logout
+    Go To Starting Page
+    Click Link  Kirjaudu ulos

@@ -18,7 +18,6 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 
 class IndexView(View):
-    decorators = [login_required]
 
     def __init__(self, template) -> None:
         self._template = template
@@ -136,7 +135,7 @@ class DownloadView(View):
         self._exporter = exporter
 
     def dispatch_request(self):
-        citations = self._citation_service.list_citations()
+        citations = self._citation_service.list_citations(current_user)
         result = self._exporter.bibobject_list_to_text(citations)
         return Response(
             result,
@@ -195,7 +194,6 @@ class LoginView(View):
 
 
 class LogoutView(View):
-    decorators = [login_required]
     def dispatch_request(self):
         logout_user()
         return redirect("/")
