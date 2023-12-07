@@ -94,11 +94,6 @@ Add Book With Multiple Authors And Valid Inputs Should Succeed
     Page Should Contain  Esimerkki kirja kolmonen
     Page Should Contain  Esimerkki kirja nelonen
 
-*** Keywords ***
-Set Publisher
-    [Arguments]  ${publisher}
-    Input Text  publisher  ${publisher}
-
 
 
 

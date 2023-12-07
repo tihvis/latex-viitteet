@@ -2,9 +2,14 @@
 Resource  resource.robot
 Suite Setup  Open And Configure Browser
 Suite Teardown  Close Browser
-Test Setup  Go To Register Page
+Test Setup  Run Keywords  Logout If Logged In  Go To Register Page
 
 *** Test Cases ***
+Click Register Link On Starting Page Should Work
+    Go To Starting Page
+    Click Link  Rekisteröidy
+    Register Page Should Be Open
+
 Register With Valid Credentials Should Succeed
     Set Username  Testi.kayttaja
     Set Password  Testitesti1
@@ -35,7 +40,7 @@ Register With Too Long Password Should Fail
     Submit Credentials
     Registeration Should Fail With Message  Salasanan on oltava 8-30 merkkiä pitkä.
 
-Register With Invalid Password Should Fail
+Register With Weak Password Should Fail
     Set Username  Testi.kayttaja
     Set Password  salasana
     Submit Credentials
@@ -61,7 +66,7 @@ Register With Existing Username Should Fail
 
     Go To Register Page
     Set Username  Testi.kayttaja
-    Set Password  S4lasana2
+    Set Password  S4lasana2Invalid
     Submit Credentials
     Registeration Should Fail With Message  Käyttäjätunnus on jo olemassa, kokeile rekisteröitymistä toisella käyttäjätunnuksella.
 

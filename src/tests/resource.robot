@@ -40,6 +40,9 @@ List All Citings Page Should Be Open
 Register Page Should Be Open
     Title Should Be  Luo uusi käyttäjätunnus
 
+Login Page Should Be Open
+    Title Should Be  Kirjaudu sisään
+
 Go To Starting Page
     Go To  ${HOME_URL}
 
@@ -85,7 +88,27 @@ Set Username
 
 Set Password
     [Arguments]  ${password}
-    Input Text  password  ${password}    
+    Input Text  password  ${password}
+
+Set Publisher
+    [Arguments]  ${publisher}
+    Input Text  publisher  ${publisher}
+
+Set Journal
+    [Arguments]  ${journal}
+    Input Text  journal  ${journal}
+
+Set Volume
+    [Arguments]  ${volume}
+    Input Text  volume  ${volume}
+
+Set Pages
+    [Arguments]  ${pages}
+    Input Text  pages  ${pages}
+
+Set Booktitle
+    [Arguments]  ${booktitle}
+    Input Text  booktitle  ${booktitle}
 
 Submit Citation
     Click Button  Lisää
@@ -98,7 +121,6 @@ Add Citation Should Fail With Message
     [Arguments]  ${message}
     Page Should Contain  ${message}
 
-
 Register And Login Test User
     Go To Register Page
     Set Username  Testuser
@@ -109,7 +131,14 @@ Register And Login Test User
     Set Username  Testuser
     Set Password  Testpassword1
     Click Button  Kirjaudu sisään
+    Go To Starting Page
 
 Logout
     Go To Starting Page
     Click Link  Kirjaudu ulos
+
+Logout If Logged In
+    Go To Starting Page
+    ${logged_in} =  Run Keyword And Return Status  Page Should Contain  Kirjaudu ulos
+    Run Keyword If  ${logged_in}  Logout
+    Go To Starting Page
