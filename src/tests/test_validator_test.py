@@ -147,7 +147,7 @@ class TestValidator(unittest.TestCase):
         expected = (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
         credentials = {"username":"testikayttaja", "password":"SALASAN4"}
         output = validator.validate_credentials(credentials)
-        
+
     def test_viallinen_vuosiluku(self):
         validator = EntryValidator()
         expected = (False, "Vuosiluku ei kelpaa.")
