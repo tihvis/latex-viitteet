@@ -64,3 +64,18 @@ class EntryValidator:
         if len(author_list) == 0:
             return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
         return (True, "")
+    
+    def validate_credentials(self, data):
+        '''Metodi, joka validoi käyttäjätunnuksen ja salasanan'''
+        username = data["username"]
+        password = data["password"]
+
+        if not 5 <= len(username) <= 30:
+            return (False, "Käyttäjätunnuksen on oltava 6-30 merkkiä pitkä.")
+        if not 8 <= len(password) <= 30:
+            return (False, "Salasanan on oltava 8-30 merkkiä pitkä.")
+        if not (re.search(r"[a-z]", password) and
+                re.search(r"[A-Z]", password) and
+                re.search(r"[0-9]", password)):
+            return (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
+        return (True, "")

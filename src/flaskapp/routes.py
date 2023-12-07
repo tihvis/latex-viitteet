@@ -128,3 +128,28 @@ class DownloadView(View):
             mimetype="text/plain",
             headers={"Content-disposition": "attachment; filename=citations.bib"},
         )
+
+class RegisterView(View):
+    methods = ["GET", "POST"]
+
+    def __init__(self, user_service, entry_validator, template) -> None:
+        self._user_service = user_service
+        self._template = template
+        self._validator = entry_validator
+
+    def dispatch_request(self):
+        if request.method == "GET":
+            return render_template(self._template)
+        msg_tuple = self._validator.validate_credentials(request.form)
+        if not msg_tuple[0]:
+            return render_template("error.html", error=msg_tuple[1])
+
+        username = request.form.get("username")
+        password = request.form.get("password")
+        if self._user_service.create_new_user(username, password):
+            flash("Rekisteröityminen onnistui, voit nyt kirjautua sisään!")
+            return redirect("/")
+
+        return render_template(
+            "error.html",
+            error="Käyttäjätunnus on jo olemassa, kokeile rekisteröitymistä toisella käyttäjätunnuksella.")

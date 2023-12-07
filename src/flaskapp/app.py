@@ -8,7 +8,8 @@ from flaskapp.routes import (
     AddBookView,
     AddArticleView,
     ListView,
-    UserDebugView
+    UserDebugView,
+    RegisterView,
 )
 from flaskapp.validator import EntryValidator
 from repositories.citation_repository import CitationRepository
@@ -71,4 +72,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/download",
     view_func=DownloadView.as_view("download", citation_service, bibtex_exporter)
+)
+
+app.add_url_rule(
+    "/register",
+    view_func=RegisterView.as_view("register", user_service, EntryValidator(), "register.html"
+    ),
 )

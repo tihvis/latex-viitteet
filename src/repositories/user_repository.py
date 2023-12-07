@@ -31,7 +31,9 @@ class UserRepository():
         pass
 
     def is_username_taken(self, username : str):
-        return False
+        sql = text("SELECT COUNT(*) FROM users WHERE LOWER(username)=LOWER(:username)")
+        result = self._db.session.execute(sql, {"username" : username}).fetchall()[0]
+        return result[0] > 0
     
     def does_user_already_exist(self, user_uuid : str):
         sql = text("SELECT uuid FROM users WHERE uuid=:uuid")
