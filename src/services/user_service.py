@@ -4,7 +4,7 @@ from repositories.user_repository import UserRepository
 
 class UserService():
     """Luokka käyttäjien lisäämistä, poistamista ja muokkausta varten"""
-    def __init__(self, user_repository : UserRepository, crypto_service : UserCryptoService) -> None:
+    def __init__(self, user_repository : UserRepository, crypto_service : UserCryptoService)-> None:
         self._user_repository = user_repository
         self._crypto_service = crypto_service
 
@@ -29,7 +29,7 @@ class UserService():
         new_hash = self._crypto_service.create_hash_from_password(password)
         user.set_password_hash(new_hash)
         self._user_repository.update_user_data(user)
-    
+
     def debug_dump_users(self):
         return str(self._user_repository.debug_dump_db())
-        
+

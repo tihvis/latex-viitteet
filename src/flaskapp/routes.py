@@ -4,8 +4,6 @@ from flask import (
     render_template,
     redirect,
     request,
-    make_response,
-    typing as ft,
 )
 from flask.views import View
 

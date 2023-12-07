@@ -64,7 +64,7 @@ class EntryValidator:
         if len(author_list) == 0:
             return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
         return (True, "")
-    
+
     def validate_credentials(self, data):
         '''Metodi, joka validoi käyttäjätunnuksen ja salasanan'''
         username = data["username"]
