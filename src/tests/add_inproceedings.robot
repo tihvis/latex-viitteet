@@ -92,8 +92,3 @@ Add Inproceeding With Multiple Authors And Valid Inputs Should Succeed
     List All Citings Page Should Be Open
     Page Should Contain  Toinen onnistunut lisäys
     Page Should Contain  Kolmas onnistunut lisäys
-    
-*** Keywords ***
-Set Booktitle
-    [Arguments]  ${booktitle}
-    Input Text  booktitle  ${booktitle}

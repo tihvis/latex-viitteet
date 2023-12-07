@@ -131,15 +131,3 @@ Add Article With Multiple Authors And Valid Inputs Should Succeed
     Page Should Contain  Keijon marjapiirakan ohje
     Page Should Contain  Tarjan marjapiirakan ohje
     
-*** Keywords ***
-Set Journal
-    [Arguments]  ${journal}
-    Input Text  journal  ${journal}
-
-Set Volume
-    [Arguments]  ${volume}
-    Input Text  volume  ${volume}
-
-Set Pages
-    [Arguments]  ${pages}
-    Input Text  pages  ${pages}

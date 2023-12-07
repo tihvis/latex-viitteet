@@ -194,4 +194,5 @@ class LoginView(View):
 class LogoutView(View):
     def dispatch_request(self):
         logout_user()
+        flash("Uloskirjautuminen onnistui!")
         return redirect("/")
