@@ -165,8 +165,7 @@ class RegisterView(View):
 
         return render_template(
             "error.html",
-            error="Käyttäjätunnus on jo olemassa, kokeile rekisteröitymistä toisella\
-                 käyttäjätunnuksella.",
+            error="Käyttäjätunnus on jo olemassa, kokeile rekisteröitymistä toisella käyttäjätunnuksella.",
         )
 
 

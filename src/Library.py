@@ -1,5 +1,8 @@
 # pylint: disable=invalid-name
 '''robot-testeissä tarvittava moduli'''
+import os
+
+from sqlalchemy import create_engine, text
 
 class Library:
     '''luokka, joka antaa robot-testeissä tarvittavat asetukset'''

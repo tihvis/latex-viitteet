@@ -1,5 +1,5 @@
-from sqlalchemy.sql import text
 from entities.user import User
+from sqlalchemy.sql import text
 
 class UserRepository():
     """Luokka käyttäjien lisäämistä, poistamista ja muokkausta varten tietokannassa"""
@@ -13,7 +13,7 @@ class UserRepository():
             return None
         result = result[0]
         return User(result[0], result[1], result[2])
-
+    
     def get_user_by_username_from_database(self, username: str):
         sql = text("SELECT uuid, username, password_hash FROM users WHERE username=:username")
         result = self._db.session.execute(sql, {"username":username}).fetchall()
@@ -43,10 +43,11 @@ class UserRepository():
         sql = text("SELECT COUNT(*) FROM users WHERE LOWER(username)=LOWER(:username)")
         result = self._db.session.execute(sql, {"username" : username}).fetchall()[0]
         return result[0] > 0
-
+    
     def does_user_already_exist(self, user_uuid : str):
         sql = text("SELECT uuid FROM users WHERE uuid=:uuid")
         result = self._db.session.execute(sql, {"uuid" : user_uuid}).fetchall()[0]
         if len(result) < 1:
             return False
+        
         return True

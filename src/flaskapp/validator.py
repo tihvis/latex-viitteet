@@ -15,6 +15,9 @@ class EntryValidator:
 
         if not 1 <= len(title) <= 80:
             return (False, "Kirjan otsikon tulee olla 1-80 merkkiä pitkä.")
+        # if not (5 <= len(isbn) <= 17) or not re.match("^[0-9-]+$", isbn):
+        #    return (False,
+        #    "ISBN-koodin tulee olla 5-17 merkkiä pitkä, ja koostua vain numeroista ja viivoista.")
         if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
             return (False, "Vuosiluku ei kelpaa.")
         if not 2 <= len(publisher) <= 40:
@@ -74,6 +77,5 @@ class EntryValidator:
         if not (re.search(r"[a-z]", password) and
                 re.search(r"[A-Z]", password) and
                 re.search(r"[0-9]", password)):
-            return (False,
-            "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
+            return (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
         return (True, "")

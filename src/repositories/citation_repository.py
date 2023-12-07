@@ -3,6 +3,7 @@ import json
 from sqlalchemy.sql import text
 from entities.citation import Citation
 
+
 class CitationRepository:
     """Luokka viitteiden talletusta varten"""
 
@@ -23,7 +24,7 @@ class CitationRepository:
 
     def get_all_citations(self, uuid: str):
         sql = text("SELECT id FROM users where uuid=:uuid")
-        user_id = self._db.session.execute(sql, {"uuid":uuid}).fetchone()[0]
+        user_id = self._db.session.execute(sql, {"uuid":uuid}).fetchone()[0]  
         sql = text("SELECT bibtex FROM citations WHERE user_id=:user_id")
         result = self._db.session.execute(sql, {"user_id":user_id}).fetchall()
         result = [r[0] for r in result]
