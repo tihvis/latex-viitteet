@@ -35,7 +35,7 @@ class MockCryptoService():
         pass
 
     def check_password(self, password : str, hash : str):
-        pass
+        return True
     
     def create_hash_from_password(self, password : str):
         return "$2b$12$VS07ZDXOwgnAv8sWELkw9eV.J0DYUm32LlnNe4Ra23k4XmDdwzyN2"
@@ -75,3 +75,21 @@ class TestUserService(unittest.TestCase):
         result = us.get_user_by_username("testname")
         expected = User("1aca1cb2-509b-4322-a9b4-42343909dbaf", "testname", "$2b$12$7qX1hyoNtYwp.Z1fbBdSj.MurAj9pdYB8o7O2iEL.4ykFotByeB7e")
         self.assertAlmostEqual(expected, result)
+    
+    def test_check_user_credentials(self):
+        mr = MockUserRepository()
+        mcs = MockCryptoService()
+        us = UserService(mr, mcs)
+        user = User("1aca1cb2-509b-4322-a9b4-42343909dbaf", "testname", "$2b$12$7qX1hyoNtYwp.Z1fbBdSj.MurAj9pdYB8o7O2iEL.4ykFotByeB7e")
+        result = us.check_user_credentials("testname", "Password123", user)
+        expected = True
+        self.assertEqual(expected, result)
+    
+    def test_check_user_credentials(self):
+        mr = MockUserRepository()
+        mcs = MockCryptoService()
+        us = UserService(mr, mcs)
+        user = User("1aca1cb2-509b-4322-a9b4-42343909dbaf", "othername", "$2b$12$7qX1hyoNtYwp.Z1fbBdSj.MurAj9pdYB8o7O2iEL.4ykFotByeB7e")
+        result = us.check_user_credentials("testname", "Password123", user)
+        expected = False
+        self.assertEqual(expected, result)
