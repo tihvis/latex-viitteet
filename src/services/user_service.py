@@ -13,10 +13,6 @@ class UserService():
             return False
         new_user = User(self._crypto_service.create_user_uuid(), username, self._crypto_service.create_hash_from_password(password))
         return self._user_repository.create_user_in_database(new_user)
-    
-#        Kommentoin nämä pois ja lisäsin ylle returnin /Mira
-#        success = self._user_repository.create_user_in_database(new_user)
-#        print(success, flush=True)
 
     def delete_user(self, user : User):
         self._user_repository.delete_user_from_database(user)
