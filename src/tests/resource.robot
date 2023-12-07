@@ -40,6 +40,9 @@ List All Citings Page Should Be Open
 Register Page Should Be Open
     Title Should Be  Luo uusi käyttäjätunnus
 
+Login Page Should Be Open
+    Title Should Be  Kirjaudu sisään
+
 Go To Starting Page
     Go To  ${HOME_URL}
 
