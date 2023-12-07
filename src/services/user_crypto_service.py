@@ -2,7 +2,6 @@ import uuid
 import bcrypt
 
 class UserCryptoService():
-    # Ei välttämättä tässä vaiheessa vielä pakollinen, mutta jossain vaiheessa kannattaa
     """Salasanojen enkryptoinnista vastaava luokka"""
     def __init__(self) -> None:
         self._default_encoder = "utf-8"
