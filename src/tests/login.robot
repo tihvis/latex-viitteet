@@ -110,5 +110,3 @@ Add First Inproceedings Citation
     Set Booktitle  Conference
     Submit Citation
     Add Citation Should Succeed
-
-
