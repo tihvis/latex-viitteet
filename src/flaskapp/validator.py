@@ -1,13 +1,15 @@
-'''Moduli, joka validoi lomakkeesta saadut syötteet'''
+"""Moduli, joka validoi lomakkeesta saadut syötteet"""
 import re
 
+
 class EntryValidator:
-    '''Luokka, joka validoi lomakkeesta saadut syötteet'''
+    """Luokka, joka validoi lomakkeesta saadut syötteet"""
+
     def __init__(self) -> None:
         pass
 
     def validate_book(self, data):
-        '''Metodi, joka validoi kirjaviitteen syötteet'''
+        """Metodi, joka validoi kirjaviitteen syötteet"""
         title = data["title"]
         year = data["year"]
         publisher = data["publisher"]
@@ -27,7 +29,7 @@ class EntryValidator:
         return (True, "")
 
     def validate_article(self, data):
-        '''Metodi, joka validoi artikkeliviitteen syötteet'''
+        """Metodi, joka validoi artikkeliviitteen syötteet"""
         author_list = data["author"]
         title = data["title"]
         journal = data["journal"]
@@ -49,7 +51,7 @@ class EntryValidator:
         return (True, "")
 
     def validate_inproceedings(self, data):
-        '''Metodi, joka validoi konferenssiartikkeliviitteen syötteet'''
+        """Metodi, joka validoi konferenssiartikkeliviitteen syötteet"""
         title = data["title"]
         year = data["year"]
         booktitle = data["booktitle"]
@@ -66,7 +68,7 @@ class EntryValidator:
         return (True, "")
 
     def validate_credentials(self, data):
-        '''Metodi, joka validoi käyttäjätunnuksen ja salasanan'''
+        """Metodi, joka validoi käyttäjätunnuksen ja salasanan"""
         username = data["username"]
         password = data["password"]
 
@@ -74,8 +76,13 @@ class EntryValidator:
             return (False, "Käyttäjätunnuksen on oltava 6-30 merkkiä pitkä.")
         if not 8 <= len(password) <= 30:
             return (False, "Salasanan on oltava 8-30 merkkiä pitkä.")
-        if not (re.search(r"[a-z]", password) and
-                re.search(r"[A-Z]", password) and
-                re.search(r"[0-9]", password)):
-            return (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
+        if not (
+            re.search(r"[a-z]", password)
+            and re.search(r"[A-Z]", password)
+            and re.search(r"[0-9]", password)
+        ):
+            return (
+                False,
+                "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.",
+            )
         return (True, "")

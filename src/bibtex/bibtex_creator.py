@@ -68,7 +68,9 @@ class BibteXExporter:
             "booktitle": bibtex_book.booktitle,
             "year": bibtex_book.year,
         }
-        return self._dict_to_bib("inproceedings", bibtex_book.citation_key, fields, True)
+        return self._dict_to_bib(
+            "inproceedings", bibtex_book.citation_key, fields, True
+        )
 
     def bibobject_list_to_text(self, elements: list):
         output = ""

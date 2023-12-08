@@ -16,7 +16,6 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 
 class IndexView(View):
-
     def __init__(self, template) -> None:
         self._template = template
 

@@ -1,11 +1,10 @@
 # pylint: disable=invalid-name
-'''robot-testeissä tarvittava moduli'''
-import os
+"""robot-testeissä tarvittava moduli"""
 
-from sqlalchemy import create_engine, text
 
 class Library:
-    '''luokka, joka antaa robot-testeissä tarvittavat asetukset'''
+    """luokka, joka antaa robot-testeissä tarvittavat asetukset"""
+
     def __init__(self):
         self._base_url = "http://localhost:5000"
         self.reset_application()
