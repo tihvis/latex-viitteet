@@ -47,6 +47,7 @@ user_service = UserService(user_repo, user_crypto_service)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+login_manager.login_message = "Kirjaudu sisään nähdäksesi tämän sivun."
 @login_manager.user_loader
 def load_user(user_id):
     return user_repo.get_user_by_id_from_database(user_id)
