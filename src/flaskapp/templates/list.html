@@ -9,6 +9,14 @@
    {% for citation in citations %}
    <ul>
       <h3><i>{{citation.title}}</i></h3>
+      <p><i>
+      {% if citation.fields.type == "book" %}
+      Kirja
+      {% elif citation.fields.type == "article" %}
+      Artikkeli
+      {% elif citation.fields.type == "inproceedings" %}
+      Konferenssiartikkeli
+      {% endif %} </p></i>
       <p>Kirjailijat: {{ citation.author|join(", ")}}</p>
       <p>Vuosi: {{citation.year}}</p>
       {% if citation.publisher %}
