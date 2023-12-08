@@ -1,5 +1,5 @@
 export DATABASE_URL=postgresql://postgres:postgres@localhost:5432
-export SECRET_KEY=eb2d0dfe57915dd533d1021c6dab357a
+export SECRET_KEY=testkey
 
 psql postgresql://postgres:postgres@localhost:5432 < schema.sql
 poetry run flask --app src/flaskapp/app.py run &
