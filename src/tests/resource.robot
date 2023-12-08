@@ -12,6 +12,7 @@ ${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
 ${ADD_NEW_ARTICLE_URL}  http://${SERVER}/add_new_article
 ${ADD_NEW_INPROCEEDINGS_URL}  http://${SERVER}/add_new_inproceedings
 ${CITATIONS_LIST_URL}  http://${SERVER}/list
+${PLEASE_LOG_IN}  Kirjaudu sisään nähdäksesi tämän sivun
 
 *** Keywords ***
 Open And Configure Browser

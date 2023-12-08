@@ -23,13 +23,13 @@ Logout Should Succeed
 After Logout User Should Not Be Able To Add Or View Citations
     Click Link  Kirjaudu ulos
     Go To Add New Book Page
-    Page Should Contain  Please log in to access this page.
+    Page Should Contain  ${PLEASE_LOG_IN}
     Go To Add New Article Page
-    Page Should Contain  Please log in to access this page.
+    Page Should Contain  ${PLEASE_LOG_IN}
     Go To Add New Inproceedings Page
-    Page Should Contain  Please log in to access this page.
+    Page Should Contain  ${PLEASE_LOG_IN}
     Go To Citation List Page
-    Page Should Contain  Please log in to access this page.
+    Page Should Contain  ${PLEASE_LOG_IN}
 
 After Logout User Should Be Able To Login And Register New User
     Click Link  Kirjaudu ulos
