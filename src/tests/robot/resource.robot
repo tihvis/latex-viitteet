@@ -1,6 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
-Library    ../Library.py
+Library    ../../Library.py
 
 *** Variables ***
 ${SERVER}  localhost:5000
