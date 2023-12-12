@@ -8,8 +8,6 @@ from flask import (
 from flask.views import View
 from flask_login import current_user, login_required, login_user, logout_user
 
-# from validator import EntryValidator
-
 #
 # https://flask.palletsprojects.com/en/2.3.x/views/
 #
@@ -35,7 +33,6 @@ class AddBookView(View):
     def dispatch_request(self):
         if request.method == "GET":
             return render_template(self._template)
-        # riku/ville? olisi näppärää, jos tämä tulisi sisäänkirjautumistietoilla?
         msg_tuple = self._validator.validate_book(request.form)
         if not msg_tuple[0]:
             return render_template("error.html", error=msg_tuple[1])

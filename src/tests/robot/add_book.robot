@@ -33,14 +33,6 @@ Add Book With No Publisher Should Fail
     Submit Citation
     Add Citation Should Fail With Message  Kustantajan nimen tulee olla 2-40 merkkiä pitkä.
 
-# Add Book With Only First Name Of Author Should Fail
-#     Set Title  Aapelin ankat
-#     Set Authors  Kauko
-#     Set Year  1990
-#     Set Publisher  Otava
-#     Submit Citation
-#     Add Citation Should Fail With Message  Jokaisen kirjailijan nimessä tulee olla vähintään kaksi nimeä.
-
 Add Already Existing Book Should Fail
      Set Title  ABC ja muut aakkoset
      Set Authors  Olli Opettaja

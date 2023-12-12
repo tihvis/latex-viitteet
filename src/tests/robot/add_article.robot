@@ -59,16 +59,6 @@ Add Article With No Pages Should Fail
     Submit Citation
     Add Citation Should Fail With Message  Ilmoita sivunumerot muodossa 38-42 tai 42.
 
-# Add Article With Only First Name Of Author Should Fail
-#     Set Title  Aapelin ankat
-#     Set Authors  Kauko
-#     Set Journal  Publisher
-#     Set Year  1990
-#     Set Volume  5
-#     Set Pages  10-18
-#     Submit Citation
-#     Add Citation Should Fail With Message  Jokaisen kirjailijan nimessä tulee olla vähintään kaksi nimeä.
-
 Add Already Existing Article Should Fail
     Set Title  Tuijan sienipiirakan ohje
     Set Authors  Tuija Sienestäjä

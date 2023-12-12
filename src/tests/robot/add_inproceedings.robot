@@ -33,14 +33,6 @@ Add Inproceedings With No Booktitle Should Fail
     Submit Citation
     Add Citation Should Fail With Message  Julkaisun nimen tulee olla 2-40 merkkiä pitkä.
 
-# Add Inproceedings With Only First Name Of Author Should Fail
-#     Set Title  Aapelin ankat
-#     Set Authors  Kauko
-#     Set Year  2020
-#     Set Booktitle  Konferenssi
-#     Submit Citation
-#     Add Citation Should Fail With Message  Jokaisen kirjailijan nimessä tulee olla vähintään kaksi nimeä.
-
 Add Already Existing Inproceedings Should Fail
     Set Title  Kolmas lisäys
     Set Authors  John Smith
