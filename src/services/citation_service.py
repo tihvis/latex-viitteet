@@ -25,10 +25,6 @@ class CitationService:
     def list_citations_by_title(self, user, descending=True) -> list:
         citations = sorted(self.list_citations(user).copy(), key=lambda c : c.title, reverse=descending)
         return citations
-    
-    def list_citations_by_author(self, user, descending=True) -> list:
-        citations = sorted(self.list_citations(user).copy(), key=lambda c : c.author, reverse=descending)
-        return citations
 
     def delete_citation(self) -> None:
         """Poistaa viitteen"""
