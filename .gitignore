@@ -160,3 +160,9 @@ cython_debug/
 
 # Vscode workspaces
 *.code-workspace
+
+# deployment stuff
+Procfile
+requirements.txt
+fly.toml
+.dockerignore
