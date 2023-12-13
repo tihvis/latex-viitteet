@@ -34,7 +34,7 @@ class TestBibtexCreator(unittest.TestCase):
         citations = [article, book, inproceedings]
         exporter = BibteXExporter()
         output = exporter.bibobject_list_to_text(citations)
-        with open("src/tests/bibtex_example.bib", encoding="utf-8") as f:
+        with open("src/tests/unittest/bibtex_example.bib", encoding="utf-8") as f:
             expected = f.read()
             self.maxDiff = None
             self.assertEqual(expected, output)
