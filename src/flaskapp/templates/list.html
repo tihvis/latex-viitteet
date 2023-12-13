@@ -1,8 +1,9 @@
-{% extends "layout.html" %}
-
 <head>
    <title>Lisäämäsi viitteet</title>
 </head>
+
+{% extends "layout.html" %}
+
 {% block content %}
 <div class='container'>
    <h2>Lisäämäsi viitteet:</h2>
@@ -62,9 +63,10 @@
                {% endif %}
             </th>
          </tr>
+         <input type="hidden" id="hidden" name="amount" value="{{amount}}">
          {% endfor %}
       </tbody>
    </table>
-   <input type="hidden" id="hidden" name="amount" value="{{amount}}">
+
 </div>
 {% endblock %}
