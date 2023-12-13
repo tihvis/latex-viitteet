@@ -1,42 +1,70 @@
+{% extends "layout.html" %}
+
 <head>
    <title>Lisäämäsi viitteet</title>
 </head>
-{% extends "layout.html" %}
 {% block content %}
 <div class='container'>
    <h2>Lisäämäsi viitteet:</h2>
-   <a href="{{url_for("download")}}">Lataa BibTeX-muodossa</a>
-   {% for citation in citations %}
-   <ul>
-      <h3><i>{{citation.title}}</i></h3>
-      <p><i>
-      {% if citation.fields.type == "book" %}
-      Kirja
-      {% elif citation.fields.type == "article" %}
-      Artikkeli
-      {% elif citation.fields.type == "inproceedings" %}
-      Konferenssiartikkeli
-      {% endif %} </p></i>
-      <p>Kirjailijat: {{ citation.author|join(", ")}}</p>
-      <p>Vuosi: {{citation.year}}</p>
-      {% if citation.publisher %}
-      <p>Julkaisija: {{ citation.publisher }}</p>
-      {% endif %}
-      {% if citation.journal %}
-      <p>Lehti: {{ citation.journal }}</p>
-      {% endif %}
-      {% if citation.booktitle %}
-      <p>Konferenssijulkaisu: {{ citation.booktitle }}</p>
-      {% endif %}
-      {% if citation.volume %}
-      <p>Vuosikerta: {{ citation.volume }}</p>
-      {% endif %}
-      {% if citation.pages %}
-      <p>Sivut: {{ citation.pages }}</p>
-      {% endif %}
-      <input type="hidden" id="hidden" name="amount" value="{{amount}}">
-   </ul>
-   <br>
-   {% endfor %}
+   <a href="{{url_for('download')}}">Lataa BibTeX-muodossa</a><br>
+   <table>
+      <thead>
+         <th>Nimike</th>
+         <th>Tyyppi</th>
+         <th>Kirjoittajat</th>
+         <th>Vuosi</th>
+         <th>Julkaisija</th>
+         <th>Konferenssijulkaisu</th>
+         <th>Lehti</th>
+         <th>Vuosikerta</th>
+         <th>Sivut</th>
+
+      </thead>
+      <tbody>
+
+         {% for citation in citations %}
+         <tr>
+            <th>{{citation.title}}</th>
+            <th>
+               {% if citation.fields.type == "book" %}
+               Kirja
+               {% elif citation.fields.type == "article" %}
+               Artikkeli
+               {% elif citation.fields.type == "inproceedings" %}
+               Konferenssiartikkeli
+               {% endif %}
+            </th>
+            <th>{{ citation.author|join(", ")}}</th>
+            <th>{{citation.year}}</th>
+            <th>
+               {% if citation.publisher %}
+               {{ citation.publisher }}
+               {% endif %}
+            </th>
+            <th>
+               {% if citation.journal %}
+               {{ citation.journal }}
+               {% endif %}
+            </th>
+            <th>
+               {% if citation.booktitle %}
+               {{ citation.booktitle }}
+               {% endif %}
+            </th>
+            <th>
+               {% if citation.volume %}
+               {{ citation.volume }}
+               {% endif %}
+            </th>
+            <th>
+               {% if citation.pages %}
+               {{ citation.pages }}</p>
+               {% endif %}
+            </th>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+   <input type="hidden" id="hidden" name="amount" value="{{amount}}">
 </div>
 {% endblock %}
