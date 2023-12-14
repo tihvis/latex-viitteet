@@ -107,7 +107,7 @@ class ListView(View):
         self._template = template
 
     def dispatch_request(self):
-        items = self._citation_service.list_citations_by_year(current_user)
+        items = self._citation_service.list_citations(current_user)
         return render_template(self._template, citations=items, amount=len(items))
 
 
