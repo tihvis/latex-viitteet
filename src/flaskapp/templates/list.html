@@ -7,8 +7,14 @@
 {% block content %}
 <div class='container'>
    <h2>Lisäämäsi viitteet:</h2>
+   <p class="centered">Alta näet lisäämäsi viitteet, ja taulukon otsikoita painamalla voit järjestää viitteet kyseisen arvon mukaan. Taulukon yläpuolella on hakukenttä, jonka avulla voit hakea viitteitä.</p>
+   <p class="centered">Saat ladattua viitteet BibTeX-tiedostona alta.</p>
+   <br>
+   <div class="button-group">
    <a href="{{url_for('download')}}">Lataa BibTeX-muodossa</a><br>
-   <table>
+   </div>
+   <p>
+   <table class="citations">
       <thead>
          <th>Nimike</th>
          <th>Tyyppi</th>
@@ -67,6 +73,18 @@
          {% endfor %}
       </tbody>
    </table>
-
+   <script type="text/javascript">
+      $(document).ready(function () {
+         $(".citations").DataTable({
+            "width": "100%",
+            "paging": false,
+            "info": false,
+            "language": {
+               "search": "Hae",
+               "zeroRecords": "Ei hakutuloksia",
+            }
+         });
+      });
+   </script>
 </div>
 {% endblock %}
