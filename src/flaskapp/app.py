@@ -15,12 +15,11 @@ from flaskapp.routes import (
 )
 from flaskapp.validator import EntryValidator
 from repositories.citation_repository import CitationRepository
-from services.citation_service import CitationService
-from bibtex.bibtex_creator import BibteXExporter
-
 from repositories.user_repository import UserRepository
+from services.citation_service import CitationService
 from services.user_crypto_service import UserCryptoService
 from services.user_service import UserService
+from bibtex.bibtex_creator import BibteXExporter
 
 
 app = Flask(__name__)

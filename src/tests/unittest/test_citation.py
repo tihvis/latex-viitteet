@@ -36,6 +36,17 @@ class TestCitation(unittest.TestCase):
         output = self.citation.publisher
         self.assertEqual(expected, output)
 
+    def test_fields(self):
+        expected = {
+            "type": "book",
+            "title": "The Red Book of Westmarch",
+            "year": "1234",
+            "author": "Bilbo Baggins\r\nFrodo Baggins\r\nSamwise Gamgee",
+            "publisher": "Shire University Press",
+        }
+        output = self.citation.fields
+        self.assertEqual(expected, output)
+
 class TestArticleCitation(unittest.TestCase):
     def setUp(self) -> None:
         fields = {
@@ -82,6 +93,19 @@ class TestArticleCitation(unittest.TestCase):
         output = self.citation.pages
         self.assertEqual(expected, output)
 
+    def test_fields(self):
+        expected = {
+            "type": "article",
+            "author":"Tero Karras\r\nSamuli Laine\r\nTimo Aila" ,
+            "title": "A Style-Based Generator Architecture for Generative Adversalial Networks",
+            "journal": "IEEE Explore",
+            "year": "2020",
+            "volume": "1",
+            "pages": "15--25",
+        }
+        output = self.citation.fields
+        self.assertEqual(expected, output)
+
 class InproceedingsCitation(unittest.TestCase):
     def setUp(self) -> None:
         fields = {
@@ -109,4 +133,15 @@ class InproceedingsCitation(unittest.TestCase):
     def test_booktitle_returns_correct_booktitle(self):
         expected = "Keihäänheittäjien kesäpäivät"
         output = self.citation.booktitle
+        self.assertEqual(expected, output)
+
+    def test_fields(self):
+        expected = {
+            "type": "inproceedings",
+            "author": "Keijo Keihäsmies",
+            "title": "Keihäänheitto Suomessa",
+            "year": "2023",
+            "booktitle": "Keihäänheittäjien kesäpäivät",
+        }
+        output = self.citation.fields
         self.assertEqual(expected, output)
