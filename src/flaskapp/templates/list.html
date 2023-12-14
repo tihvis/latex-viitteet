@@ -69,10 +69,10 @@
                {% endif %}
             </th>
          </tr>
-         <input type="hidden" id="hidden" name="amount" value="{{amount}}">
          {% endfor %}
       </tbody>
    </table>
+   <input type="hidden" id="hidden" name="amount" value="{{amount}}">
    <script type="text/javascript">
       $(document).ready(function () {
          $(".citations").DataTable({
