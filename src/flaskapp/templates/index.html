@@ -5,19 +5,20 @@
   {% block content %}
   <div class='container'>
   <h2>Etusivu</h2>
-  <br>
   {% if current_user.is_authenticated %}
-  <div class="button-group">
-    <a href="/logout">Kirjaudu ulos</a>
-  </div>
   <br>
   <div class="button-group">
     <a href="/add_new_article">Lisää artikkeli</a>
     <a href="/add_new_book">Lisää kirja</a></li>
     <a href="/add_new_inproceedings">Lisää konferenssiartikkeli </a>
+  </div>
+  <br>
+  <div class="button-group">
     <a href="/list">Hae lisäämäsi viitteet</a>
   </div>
+  <br>
   {% else %}
+  <p class="centered">Rekisteröidy käyttäjäksi tai kirjaudu sisään aloittaaksesi.</p>
   <div class="button-group">
     <a href="/login">Kirjaudu sisään</a>
     <a href="/register">Rekisteröidy</a>
