@@ -5,6 +5,9 @@ Suite Teardown  Run Keywords  Logout  Close Browser
 Test Setup  Go To Citation List Page
 
 *** Test Cases ***
+Citations In Table Format Visible
+    Page Should Contain Element  xpath=//table
+    
 Citation Amount Matches DB
     ${value}=  Get Value  id=hidden
     ${value_as_int}=  Convert To Integer  ${value}
@@ -13,6 +16,3 @@ Citation Amount Matches DB
 
 Link To BibTeX File Should Be Visible
     Page Should Contain  Lataa BibTeX-muodossa
-
-Citations In Table Format Visible
-    Page Should Contain Element  xpath=//table
