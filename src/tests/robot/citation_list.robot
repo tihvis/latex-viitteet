@@ -13,3 +13,6 @@ Citation Amount Matches DB
 
 Link To BibTeX File Should Be Visible
     Page Should Contain  Lataa BibTeX-muodossa
+
+Citations In Table Format Visible
+    Page Should Contain Element  xpath=//table
