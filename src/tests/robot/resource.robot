@@ -122,6 +122,13 @@ Add Citation Should Fail With Message
     [Arguments]  ${message}
     Page Should Contain  ${message}
 
+Register First Test User
+    Go To Register Page
+    Set Username  Testuser1
+    Set Password  Testpassw0rd
+    Click Button  Rekisteröidy
+    Go To Starting Page
+    
 Register And Login Test User
     Go To Register Page
     Set Username  Testuser
