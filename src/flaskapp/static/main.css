@@ -130,17 +130,23 @@ a:link, a:visited {
   margin-bottom: 10px;
 }
 
-.dataTables_filter label input {
+.dataTables_filter input:empty {
   font-size: 14px;
-  border: 2px solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
   hyphens: auto;
+  background-color: #e6e2d3;
 }
 
-.dataTables_filter label input:focus {
+.dataTables_filter input:focus {
   outline: none;
   border-color: rgb(0, 0, 0);
+  background-color: #e6e2d3;
 }
 
 .dataTable tbody th{
+  background-color: #e6e2d3;
+}
+
+.dataTable td {
   background-color: #e6e2d3;
 }
