@@ -31,8 +31,8 @@
 
          {% for citation in citations %}
          <tr>
-            <th>{{citation.title}}</th>
-            <th>
+            <td>{{citation.title}}</td>
+            <td>
                {% if citation.fields.type == "book" %}
                Kirja
                {% elif citation.fields.type == "article" %}
@@ -40,34 +40,34 @@
                {% elif citation.fields.type == "inproceedings" %}
                Konferenssiartikkeli
                {% endif %}
-            </th>
-            <th>{{ citation.author|join(", ")}}</th>
-            <th>{{citation.year}}</th>
-            <th>
+            </td>
+            <td>{{ citation.author|join(", ")}}</td>
+            <td>{{citation.year}}</td>
+            <td>
                {% if citation.publisher %}
                {{ citation.publisher }}
                {% endif %}
-            </th>
-            <th>
+            </td>
+            <td>
                {% if citation.journal %}
                {{ citation.journal }}
                {% endif %}
-            </th>
-            <th>
+            </td>
+            <td>
                {% if citation.booktitle %}
                {{ citation.booktitle }}
                {% endif %}
-            </th>
-            <th>
+            </td>
+            <td>
                {% if citation.volume %}
                {{ citation.volume }}
                {% endif %}
-            </th>
-            <th>
+            </td>
+            <td>
                {% if citation.pages %}
                {{ citation.pages }}</p>
                {% endif %}
-            </th>
+            </td>
          </tr>
          {% endfor %}
       </tbody>
@@ -79,6 +79,10 @@
             "width": "100%",
             "paging": false,
             "info": false,
+            "autoWidth": false,
+            "columnDefs": [
+            { "width": "6%", "targets": [-2] },
+            { "width": "4%", "targets": [-6, -1] }],
             "language": {
                "search": "Hae",
                "zeroRecords": "Ei hakutuloksia",

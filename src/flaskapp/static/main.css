@@ -1,5 +1,5 @@
 body {
-    font-family: 'Times New Roman', serif;
+    font-family: "Times New Roman", serif;
     background-color: #e6e2d3;
     margin: 0;
     padding: 0;
@@ -19,19 +19,19 @@ body {
 
 h1 {
     color: #000000; 
-    font-family: 'Copperplate', sans-serif;
+    font-family: "Copperplate", sans-serif;
     text-align: left;
 }
 
 h2 {
     color: #000000;
-    font-family: 'Copperplate', sans-serif;
+    font-family: "Copperplate", sans-serif;
     text-align: center;
 }
 
 h3 {
     color: #000000;
-    font-family: 'Copperplate', sans-serif;
+    font-family: "Copperplate", sans-serif;
     text-align: left;
 }
 
@@ -39,7 +39,7 @@ p {
     color: #000000;
     line-height: 1.6;
     text-align: left;
-    font-family: 'Times New Roman', serif;
+    font-family: "Times New Roman", serif;
 }
 
 .centered {
@@ -123,6 +123,15 @@ a:link, a:visited {
 .citations thead th {
   text-align: center;
   background-color: #c4b7a6;
+}
+
+.citation tbody td {
+  text-align: left;
+}
+
+.citations td:nth-child(-6),
+.citations td:nth-child(-1) {
+    text-align: center;
 }
 
 .dataTables_filter {
