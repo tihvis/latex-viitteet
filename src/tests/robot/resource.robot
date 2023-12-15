@@ -12,6 +12,12 @@ ${ADD_NEW_BOOK_URL}  http://${SERVER}/add_new_book
 ${ADD_NEW_ARTICLE_URL}  http://${SERVER}/add_new_article
 ${ADD_NEW_INPROCEEDINGS_URL}  http://${SERVER}/add_new_inproceedings
 ${CITATIONS_LIST_URL}  http://${SERVER}/list
+${DEPLOYED}  ltx-viitteet.fly.dev
+${DEPLOYED_HOME_URL}  https://${DEPLOYED}
+${DEPLOYED_ADD_BOOK_URL}  https://${DEPLOYED}/add_new_book
+${DEPLOYED_ADD_ARTICLE_URL}  https://${DEPLOYED}/add_new_article
+${DEPLOYED_ADD_INPROCEEDINGS_URL}  https://${DEPLOYED}/add_new_inproceedings
+${DEPLOYED_CITATIONS_LIST_URL}  https://${DEPLOYED}/list
 ${PLEASE_LOG_IN}  Kirjaudu sisään nähdäksesi tämän sivun
 
 *** Keywords ***
