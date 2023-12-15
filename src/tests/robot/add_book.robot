@@ -10,7 +10,7 @@ Add Book With No Title Should Fail
     Set Year  1990
     Set Publisher  Otava
     Submit Citation
-    Add Citation Should Fail With Message  Kirjan otsikon tulee olla 1-80 merkkiä pitkä.
+    Add Citation Should Fail With Message  Kirjan otsikon on oltava 1-80 merkkiä pitkä.
 
 Add Book With No Author Should Fail
     Set Title  ABC ja muut aakkoset
@@ -31,7 +31,7 @@ Add Book With No Publisher Should Fail
     Set Authors  Kauno Kukkamäki
     Set Year  1990
     Submit Citation
-    Add Citation Should Fail With Message  Kustantajan nimen tulee olla 2-40 merkkiä pitkä.
+    Add Citation Should Fail With Message  Kustantajan nimen on oltava 2-40 merkkiä pitkä.
 
 Add Already Existing Book Should Fail
      Set Title  ABC ja muut aakkoset

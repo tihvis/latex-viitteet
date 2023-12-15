@@ -10,7 +10,7 @@ Add Inproceedings With No Title Should Fail
     Set Year  1990
     Set Booktitle  Konferenssi
     Submit Citation
-    Add Citation Should Fail With Message  Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.
+    Add Citation Should Fail With Message  Artikkelin otsikon on oltava 1-80 merkkiä pitkä.
 
 Add Inproceedings With No Authors Should Fail
     Set Title  Otsikko
@@ -31,7 +31,7 @@ Add Inproceedings With No Booktitle Should Fail
     Set Authors  Kauko Matkaaja
     Set Year  2020
     Submit Citation
-    Add Citation Should Fail With Message  Julkaisun nimen tulee olla 2-40 merkkiä pitkä.
+    Add Citation Should Fail With Message  Julkaisun nimen on oltava 2-40 merkkiä pitkä.
 
 Add Already Existing Inproceedings Should Fail
     Set Title  Kolmas lisäys

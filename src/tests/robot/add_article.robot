@@ -12,7 +12,7 @@ Add Article With No Title Should Fail
     Set Volume  6
     Set Pages  40-43
     Submit Citation
-    Add Citation Should Fail With Message  Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.
+    Add Citation Should Fail With Message  Artikkelin otsikon on oltava 1-80 merkkiä pitkä.
 
 Add Article With No Year Should Fail
     Set Title  Sepon sienipaikat
@@ -39,7 +39,7 @@ Add Article With No Journal Should Fail
     Set Volume  10
     Set Pages  42-44
     Submit Citation
-    Add Citation Should Fail With Message  Lehden nimen tulee olla 1-80 merkkiä pitkä.
+    Add Citation Should Fail With Message  Lehden nimen on oltava 1-80 merkkiä pitkä.
 
 Add Article With No Volume Should Fail
     Set Title  Sepon sienipaikat
