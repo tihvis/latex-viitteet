@@ -129,11 +129,6 @@ a:link, a:visited {
   text-align: left;
 }
 
-.citations td:nth-child(-6),
-.citations td:nth-child(-1) {
-    text-align: center;
-}
-
 .dataTables_filter {
   float: right;
   margin-bottom: 10px;
