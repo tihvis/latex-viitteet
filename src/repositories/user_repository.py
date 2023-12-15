@@ -44,14 +44,6 @@ class UserRepository:
             return False
         return True
 
-    def delete_user_from_database(self, user: User):
-        # sql = text("DELETE FROM users WHERE uuid=:uuid RETURNING *")
-        # result = self._db.session.execute(sql, {"uuid" : user.get_id()}).fetchall()[0]
-        pass
-
-    def update_user_data(self, user: User):
-        pass
-
     def is_username_taken(self, username: str):
         sql = text("SELECT COUNT(*) FROM users WHERE LOWER(username)=LOWER(:username)")
         result = self._db.session.execute(sql, {"username": username}).fetchall()[0]

@@ -10,17 +10,11 @@ class MockUserRepository():
             "takenname" : User("1aca1cb2-509b-4322-a9b4-42343909dbaf", "takenname", "$2b$12$7qX1hyoNtYwp.Z1fbBdSj.MurAj9pdYB8o7O2iEL.4ykFotByeB7e")
         }
 
-    def get_user_by_id_from_database(self, user_uuid : str):
-        pass
-
     def get_user_by_username_from_database(self, username: str):
         return self.users[username]
 
     def create_user_in_database(self, user : User):
         return True
-
-    def does_user_already_exist(self, user_uuid : str):
-        pass
 
     def delete_user_from_database(self, user : User):
         self.users.pop(user.username)
