@@ -140,3 +140,7 @@ a:link, a:visited {
   outline: none;
   border-color: rgb(0, 0, 0);
 }
+
+.dataTable tbody th{
+  background-color: #e6e2d3;
+}
