@@ -8,6 +8,22 @@ class EntryValidator:
     def __init__(self) -> None:
         pass
 
+
+    def validate_length(self, str, min, max, name):
+        if not min <= len(str) <= max:
+            raise Exception(f"{name} on oltava {min}-{max} merkkiä pitkä.")
+
+
+    def validate_year(self, year):
+        if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
+            raise Exception("Vuosiluku ei kelpaa.")
+
+
+    def validate_author_list(self, author_list):
+        if len(author_list) == 0:
+            raise Exception("Viitteeseen tulee lisätä vähintään yksi kirjailija.")
+
+
     def validate_book(self, data):
         """Metodi, joka validoi kirjaviitteen syötteet"""
         title = data["title"]
@@ -15,14 +31,14 @@ class EntryValidator:
         publisher = data["publisher"]
         author_list = data["author"]
 
-        if not 1 <= len(title) <= 80:
-            return (False, "Kirjan otsikon tulee olla 1-80 merkkiä pitkä.")
-        if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
-            return (False, "Vuosiluku ei kelpaa.")
-        if not 2 <= len(publisher) <= 40:
-            return (False, "Kustantajan nimen tulee olla 2-40 merkkiä pitkä.")
-        if len(author_list) == 0:
-            return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
+        try:
+            self.validate_length(title, 1, 80, "Kirjan otsikon")
+            self.validate_length(publisher, 2, 40, "Kustantajan nimen")
+            self.validate_year(year)
+            self.validate_author_list(author_list)
+        except Exception as e:
+            return (False, str(e))
+
         return (True, "")
 
     def validate_article(self, data):
@@ -33,14 +49,15 @@ class EntryValidator:
         year = data["year"]
         volume = data["volume"]
         pages = data["pages"]
-        if not 1 <= len(title) <= 80:
-            return (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
-        if len(author_list) == 0:
-            return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
-        if not 1 <= len(journal) <= 80:
-            return (False, "Lehden nimen tulee olla 1-80 merkkiä pitkä.")
-        if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
-            return (False, "Vuosiluku ei kelpaa.")
+
+        try:
+            self.validate_length(title, 1, 80, "Artikkelin otsikon")
+            self.validate_length(journal, 1, 80, "Lehden nimen")
+            self.validate_year(year)
+            self.validate_author_list(author_list)
+        except Exception as e:
+            return (False, str(e))
+
         if volume == "" or not volume.isdigit():
             return (False, "Lehden numero ei kelpaa.")
         if not re.match("^[0-9-]+$", pages):
@@ -54,14 +71,14 @@ class EntryValidator:
         booktitle = data["booktitle"]
         author_list = data["author"]
 
-        if not 1 <= len(title) <= 80:
-            return (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
-        if year == "" or not (1 <= int(year) <= 2025) or not year.isdigit():
-            return (False, "Vuosiluku ei kelpaa.")
-        if not 1 <= len(booktitle) <= 80:
-            return (False, "Julkaisun nimen tulee olla 2-40 merkkiä pitkä.")
-        if len(author_list) == 0:
-            return (False, "Viitteeseen tulee lisätä vähintään yksi kirjailija.")
+        try:
+            self.validate_length(title, 1, 80, "Artikkelin otsikon")
+            self.validate_length(booktitle, 2, 40, "Julkaisun nimen")
+            self.validate_year(year)
+            self.validate_author_list(author_list)
+        except Exception as e:
+            return (False, str(e))
+
         return (True, "")
 
     def validate_credentials(self, data):
@@ -69,10 +86,12 @@ class EntryValidator:
         username = data["username"]
         password = data["password"]
 
-        if not 6 <= len(username) <= 30:
-            return (False, "Käyttäjätunnuksen on oltava 6-30 merkkiä pitkä.")
-        if not 8 <= len(password) <= 30:
-            return (False, "Salasanan on oltava 8-30 merkkiä pitkä.")
+        try:
+            self.validate_length(username, 6, 30, "Käyttäjätunnuksen")
+            self.validate_length(password, 8, 30, "Salasanan")
+        except Exception as e:
+            return (False, str(e))
+
         if not (
             re.search(r"[a-z]", password)
             and re.search(r"[A-Z]", password)

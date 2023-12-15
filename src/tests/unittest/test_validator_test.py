@@ -8,17 +8,17 @@ class TestValidator(unittest.TestCase):
         book = {"author":"J. R. R. Tolkien", "title":"Taru sormusten herrasta", "year": "1954", "publisher": "Allen & Unwin"}
         output = validator.validate_book(book)
         self.assertEqual(expected, output)
-    
+
     def test_liian_lyhyt_kirjan_nimi(self):
         validator = EntryValidator()
-        expected = (False, "Kirjan otsikon tulee olla 1-80 merkkiä pitkä.")
+        expected = (False, "Kirjan otsikon on oltava 1-80 merkkiä pitkä.")
         book = {"author":"J. R. R. Tolkien", "title":"", "year": "1954", "publisher": "Allen & Unwin"}
         output = validator.validate_book(book)
         self.assertEqual(expected, output)
 
     def test_liian_liian_lyhyt_kustantaja(self):
         validator = EntryValidator()
-        expected = (False, "Kustantajan nimen tulee olla 2-40 merkkiä pitkä.")
+        expected = (False, "Kustantajan nimen on oltava 2-40 merkkiä pitkä.")
         book = {"author":"J. R. R. Tolkien", "title":"Taru sormusten herrasta", "year": "1954", "publisher": ""}
         output = validator.validate_book(book)
         self.assertEqual(expected, output)
@@ -53,14 +53,14 @@ class TestValidator(unittest.TestCase):
 
     def test_title_liian_lyhyt(self):
         validator = EntryValidator()
-        expected = (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
+        expected = (False, "Artikkelin otsikon on oltava 1-80 merkkiä pitkä.")
         article = {"author":"Antti Ahkera", "title":"", "journal":"Kotiliesi", "year":"2020", "volume":"186", "pages":"25-30"}
         output = validator.validate_article(article)
         self.assertEqual(expected, output)
 
     def test_journalissa_vikaa(self):
         validator = EntryValidator()
-        expected = (False, "Lehden nimen tulee olla 1-80 merkkiä pitkä.")
+        expected = (False, "Lehden nimen on oltava 1-80 merkkiä pitkä.")
         article = {"author":"Antti Ahkera", "title":"Hometalot", "journal":"", "year":"2020", "volume":"186", "pages":"25-30"}
         output = validator.validate_article(article)
         self.assertEqual(expected, output)
@@ -147,7 +147,7 @@ class TestValidator(unittest.TestCase):
         expected = (False, "Salasanan tulee sisältää vähintään yksi pieni kirjain, yksi iso kirjain sekä yksi numero.")
         credentials = {"username":"testikayttaja", "password":"SALASAN4"}
         output = validator.validate_credentials(credentials)
-        
+
     def test_viallinen_vuosiluku(self):
         validator = EntryValidator()
         expected = (False, "Vuosiluku ei kelpaa.")
@@ -164,14 +164,14 @@ class TestValidator(unittest.TestCase):
 
     def test_artikkelin_nimi_puuttuu(self):
         validator = EntryValidator()
-        expected = (False, "Artikkelin otsikon tulee olla 1-80 merkkiä pitkä.")
+        expected = (False, "Artikkelin otsikon on oltava 1-80 merkkiä pitkä.")
         inproceedings = {"author":"Vihulainen, Arto", "title":"", "year": "2011", "booktitle": "SIGCSE '11"}
         output = validator.validate_inproceedings(inproceedings)
         self.assertEqual(expected, output)
 
     def test_julkaisun_nimi_puuttuu(self):
         validator = EntryValidator()
-        expected = (False, "Julkaisun nimen tulee olla 2-40 merkkiä pitkä.")
+        expected = (False, "Julkaisun nimen on oltava 2-40 merkkiä pitkä.")
         inproceedings = {"author":"Vihulainen, Arto", "title":"Teaching Programming for Beginners.", "year": "2011", "booktitle": ""}
         output = validator.validate_inproceedings(inproceedings)
         self.assertEqual(expected, output)
